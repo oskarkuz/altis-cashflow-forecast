@@ -1,0 +1,29 @@
+source_system,source_account,source_account_name,unified_account,unified_name,driver
+exact,7000,Materiaalkosten,4000,Materiaalkosten,materials
+exact,7100,Onderaanneming,4100,Onderaanneming,subcontractor
+exact,8000,Projectopbrengsten,8000,Projectopbrengsten,milestone_billing
+exact,1300,Debiteuren,1300,Debiteuren,payment_lag
+exact,1600,Crediteuren,1600,Crediteuren,payment_lag
+exact,1000,Liquide middelen,1000,Liquide middelen,opening_cash
+exact,4300,Algemene kosten,4900,Algemene kosten,overhead
+gilde,60000,Materiaalkosten,4000,Materiaalkosten,materials
+gilde,61000,Onderaanneming,4100,Onderaanneming,subcontractor
+gilde,80000,Projectopbrengsten,8000,Projectopbrengsten,milestone_billing
+gilde,13000,Debiteuren,1300,Debiteuren,payment_lag
+gilde,16000,Crediteuren,1600,Crediteuren,payment_lag
+gilde,10000,Liquide middelen,1000,Liquide middelen,opening_cash
+gilde,65000,Algemene kosten,4900,Algemene kosten,overhead
+yuki,4000,Materiaalkosten,4000,Materiaalkosten,materials
+yuki,4400,Onderaanneming,4100,Onderaanneming,subcontractor
+yuki,8100,Projectopbrengsten,8000,Projectopbrengsten,milestone_billing
+yuki,1200,Debiteuren,1300,Debiteuren,payment_lag
+yuki,1700,Crediteuren,1600,Crediteuren,payment_lag
+yuki,1100,Liquide middelen,1000,Liquide middelen,opening_cash
+yuki,4800,Algemene kosten,4900,Algemene kosten,overhead
+snelstart,4500,Materiaalkosten,4000,Materiaalkosten,materials
+snelstart,4600,Onderaanneming,4100,Onderaanneming,subcontractor
+snelstart,8200,Projectopbrengsten,8000,Projectopbrengsten,milestone_billing
+snelstart,1305,Debiteuren,1300,Debiteuren,payment_lag
+snelstart,1605,Crediteuren,1600,Crediteuren,payment_lag
+snelstart,1110,Liquide middelen,1000,Liquide middelen,opening_cash
+snelstart,4950,Algemene kosten,4900,Algemene kosten,overhead

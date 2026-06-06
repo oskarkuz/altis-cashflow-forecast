@@ -1,0 +1,75 @@
+Boekstuknr;Boekdatum;Grootboek;Omschrijving;Project;Relatie;Debet;Credit
+GLD-00001;14-03-2026;80000;Projectopbrengsten;INFRA-03;Opdrachtgever INFRA-03;;60.579,00
+GLD-00002;15-03-2026;80000;Projectopbrengsten;INFRA-01;Opdrachtgever INFRA-01;;128.095,00
+GLD-00003;17-03-2026;60000;Materiaalkosten;INFRA-01;Klaassen Staal;5.169,00;
+GLD-00004;18-03-2026;61000;Onderaanneming;INFRA-01;Installtech BV;26.991,00;
+GLD-00005;18-03-2026;13000;Debiteuren;INFRA-01;Opdrachtgever INFRA-01;;26.207,00
+GLD-00006;19-03-2026;61000;Onderaanneming;INFRA-02;Bouwmaat NL;27.706,00;
+GLD-00007;19-03-2026;13000;Debiteuren;INFRA-03;Opdrachtgever INFRA-03;;44.810,00
+GLD-00008;20-03-2026;65000;Algemene kosten;INFRA-03;Van Dijk Onderaanneming;23.709,00;
+GLD-00009;21-03-2026;61000;Onderaanneming;INFRA-02;Installtech BV;25.488,00;
+GLD-00010;22-03-2026;13000;Debiteuren;INFRA-02;Opdrachtgever INFRA-02;;83.521,00
+GLD-00011;25-03-2026;60000;Materiaalkosten;INFRA-03;Provincie Utrecht;22.967,00;
+GLD-00012;25-03-2026;61000;Onderaanneming;INFRA-03;Saint-Gobain;11.474,00;
+GLD-00013;26-03-2026;65000;Algemene kosten;INFRA-02;Wonen Centraal;24.190,00;
+GLD-00014;26-03-2026;16000;Crediteuren;INFRA-03;Klaassen Staal;24.676,00;
+GLD-00015;26-03-2026;16000;Crediteuren;INFRA-01;Provincie Utrecht;23.023,00;
+GLD-00016;27-03-2026;65000;Algemene kosten;INFRA-03;Provincie Utrecht;33.317,00;
+GLD-00017;28-03-2026;80000;Projectopbrengsten;INFRA-03;Opdrachtgever INFRA-03;;38.837,00
+GLD-00018;28-03-2026;80000;Projectopbrengsten;INFRA-02;Opdrachtgever INFRA-02;;54.971,00
+GLD-00019;28-03-2026;61000;Onderaanneming;INFRA-01;Wonen Centraal;30.630,00;
+GLD-00020;28-03-2026;16000;Crediteuren;INFRA-02;Bouwmaat NL;13.750,00;
+GLD-00021;30-03-2026;80000;Projectopbrengsten;INFRA-03;Opdrachtgever INFRA-03;;131.894,00
+GLD-00022;01-04-2026;16000;Crediteuren;INFRA-02;Klaassen Staal;50.489,00;
+GLD-00023;02-04-2026;16000;Crediteuren;INFRA-01;Klaassen Staal;16.808,00;
+GLD-00024;02-04-2026;65000;Algemene kosten;INFRA-03;BAM Infra;22.259,00;
+GLD-00025;03-04-2026;65000;Algemene kosten;INFRA-03;Cementbouw;14.380,00;
+GLD-00026;05-04-2026;80000;Projectopbrengsten;INFRA-02;Opdrachtgever INFRA-02;;21.722,00
+GLD-00027;10-04-2026;61000;Onderaanneming;INFRA-01;BAM Infra;16.206,00;
+GLD-00028;12-04-2026;61000;Onderaanneming;INFRA-02;Bouwmaat NL;44.438,00;
+GLD-00029;13-04-2026;65000;Algemene kosten;INFRA-03;Cementbouw;15.087,00;
+GLD-00030;15-04-2026;80000;Projectopbrengsten;INFRA-03;Opdrachtgever INFRA-03;;106.279,00
+GLD-00031;17-04-2026;80000;Projectopbrengsten;INFRA-02;Opdrachtgever INFRA-02;;30.145,00
+GLD-00032;18-04-2026;60000;Materiaalkosten;INFRA-01;Klaassen Staal;10.334,00;
+GLD-00033;18-04-2026;16000;Crediteuren;INFRA-02;Saint-Gobain;31.336,00;
+GLD-00034;19-04-2026;65000;Algemene kosten;INFRA-01;Cementbouw;34.332,00;
+GLD-00035;22-04-2026;65000;Algemene kosten;INFRA-03;Provincie Utrecht;28.803,00;
+GLD-00036;23-04-2026;16000;Crediteuren;INFRA-02;Gemeente Utrecht;42.468,00;
+GLD-00037;24-04-2026;80000;Projectopbrengsten;INFRA-02;Opdrachtgever INFRA-02;;121.884,00
+GLD-00038;25-04-2026;65000;Algemene kosten;INFRA-02;Saint-Gobain;30.869,00;
+GLD-00039;27-04-2026;16000;Crediteuren;INFRA-01;Wonen Centraal;23.700,00;
+GLD-00040;28-04-2026;13000;Debiteuren;INFRA-03;Opdrachtgever INFRA-03;;55.248,00
+GLD-00041;29-04-2026;80000;Projectopbrengsten;INFRA-01;Opdrachtgever INFRA-01;;155.272,00
+GLD-00042;29-04-2026;60000;Materiaalkosten;INFRA-01;Gemeente Utrecht;41.884,00;
+GLD-00043;29-04-2026;80000;Projectopbrengsten;INFRA-03;Opdrachtgever INFRA-03;;128.404,00
+GLD-00044;30-04-2026;80000;Projectopbrengsten;INFRA-01;Opdrachtgever INFRA-01;;72.385,00
+GLD-00045;30-04-2026;13000;Debiteuren;INFRA-02;Opdrachtgever INFRA-02;;119.649,00
+GLD-00046;04-05-2026;60000;Materiaalkosten;INFRA-03;Wonen Centraal;10.682,00;
+GLD-00047;05-05-2026;13000;Debiteuren;INFRA-01;Opdrachtgever INFRA-01;;48.466,00
+GLD-00048;08-05-2026;16000;Crediteuren;INFRA-02;Strukton;51.352,00;
+GLD-00049;09-05-2026;16000;Crediteuren;INFRA-03;Provincie Utrecht;15.481,00;
+GLD-00050;11-05-2026;65000;Algemene kosten;INFRA-03;Gemeente Utrecht;28.071,00;
+GLD-00051;11-05-2026;13000;Debiteuren;INFRA-03;Opdrachtgever INFRA-03;;63.615,00
+GLD-00052;11-05-2026;65000;Algemene kosten;INFRA-01;Wonen Centraal;28.092,00;
+GLD-00053;13-05-2026;80000;Projectopbrengsten;INFRA-01;Opdrachtgever INFRA-01;;39.567,00
+GLD-00054;15-05-2026;13000;Debiteuren;INFRA-01;Opdrachtgever INFRA-01;;116.660,00
+GLD-00055;16-05-2026;80000;Projectopbrengsten;INFRA-02;Opdrachtgever INFRA-02;;94.307,00
+GLD-00056;16-05-2026;16000;Crediteuren;INFRA-01;Cementbouw;42.883,00;
+GLD-00057;16-05-2026;16000;Crediteuren;INFRA-02;Saint-Gobain;51.942,00;
+GLD-00058;20-05-2026;13000;Debiteuren;INFRA-03;Opdrachtgever INFRA-03;;60.368,00
+GLD-00059;21-05-2026;80000;Projectopbrengsten;INFRA-01;Opdrachtgever INFRA-01;;99.093,00
+GLD-00060;21-05-2026;16000;Crediteuren;INFRA-02;Klaassen Staal;26.760,00;
+GLD-00061;22-05-2026;60000;Materiaalkosten;INFRA-01;Saint-Gobain;22.137,00;
+GLD-00062;22-05-2026;61000;Onderaanneming;INFRA-02;Gemeente Utrecht;18.435,00;
+GLD-00063;22-05-2026;16000;Crediteuren;INFRA-03;Gemeente Utrecht;15.684,00;
+GLD-00064;23-05-2026;65000;Algemene kosten;INFRA-02;Wonen Centraal;8.894,00;
+GLD-00065;24-05-2026;65000;Algemene kosten;INFRA-02;Cementbouw;40.675,00;
+GLD-00066;25-05-2026;13000;Debiteuren;INFRA-03;Opdrachtgever INFRA-03;;67.975,00
+GLD-00067;26-05-2026;16000;Crediteuren;INFRA-02;Strukton;22.251,00;
+GLD-00068;28-05-2026;65000;Algemene kosten;INFRA-02;Installtech BV;24.975,00;
+GLD-00069;01-06-2026;80000;Projectopbrengsten;INFRA-02;Opdrachtgever INFRA-02;;102.760,00
+GLD-00070;01-06-2026;65000;Algemene kosten;INFRA-02;Cementbouw;38.159,00;
+GLD-00071;01-06-2026;80000;Projectopbrengsten;INFRA-01;Opdrachtgever INFRA-01;;43.480,00
+GLD-00072;02-06-2026;16000;Crediteuren;INFRA-01;Provincie Utrecht;9.246,00;
+GLD-00073;03-06-2026;60000;Materiaalkosten;INFRA-01;Klaassen Staal;38.882,00;
+GLD-00074;04-06-2026;60000;Materiaalkosten;INFRA-01;CORRECTIE boeking;;7.693,00

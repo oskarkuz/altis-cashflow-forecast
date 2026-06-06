@@ -1,0 +1,95 @@
+Regelnr;Datum;Grootboeknr;Omschrijving;Projectcode;Debiteur;BedragEUR
+SS00001;09/03/2026;1305;Debiteuren;VAST-02;Opdrachtgever VAST-02;85.832,00
+SS00002;09/03/2026;4600;Onderaanneming;VAST-02;Cementbouw;-27.053,00
+SS00003;10/03/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;130.621,00
+SS00004;10/03/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;78.698,00
+SS00005;11/03/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;112.462,00
+SS00006;14/03/2026;1305;Debiteuren;VAST-01;Opdrachtgever VAST-01;52.635,00
+SS00007;16/03/2026;1605;Crediteuren;VAST-03;Van Dijk Onderaanneming;-20.675,00
+SS00008;19/03/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;73.067,00
+SS00009;21/03/2026;1605;Crediteuren;VAST-01;Gemeente Utrecht;-21.221,00
+SS00010;23/03/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;22.542,00
+SS00011;25/03/2026;8200;Projectopbrengsten;VAST-03;Opdrachtgever VAST-03;137.489,00
+SS00012;26/03/2026;1605;Crediteuren;VAST-03;Heijmans;-40.694,00
+SS00013;28/03/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;82.898,00
+SS00014;28/03/2026;4950;Algemene kosten;VAST-02;BAM Infra;-12.618,00
+SS00015;28/03/2026;4600;Onderaanneming;VAST-03;Cementbouw;-35.704,00
+SS00016;28/03/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;92.472,00
+SS00017;30/03/2026;1305;Debiteuren;VAST-02;Opdrachtgever VAST-02;90.349,00
+SS00018;31/03/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;92.939,00
+SS00019;03/04/2026;4500;Materiaalkosten;VAST-01;Saint-Gobain;-16.398,00
+SS00020;03/04/2026;4950;Algemene kosten;VAST-01;Cementbouw;-8.215,00
+SS00021;04/04/2026;1305;Debiteuren;VAST-03;Opdrachtgever VAST-03;67.802,00
+SS00022;05/04/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;44.212,00
+SS00023;06/04/2026;4500;Materiaalkosten;VAST-02;Installtech BV;-13.368,00
+SS00024;07/04/2026;1305;Debiteuren;VAST-03;Opdrachtgever VAST-03;64.378,00
+SS00025;08/04/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;85.631,00
+SS00026;11/04/2026;4500;Materiaalkosten;VAST-01;Provincie Utrecht;-21.781,00
+SS00027;11/04/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;93.535,00
+SS00028;11/04/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;99.995,00
+SS00029;13/04/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;140.858,00
+SS00030;14/04/2026;4950;Algemene kosten;VAST-03;Cementbouw;-14.788,00
+SS00031;14/04/2026;4950;Algemene kosten;VAST-01;Van Dijk Onderaanneming;-15.787,00
+SS00032;15/04/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;77.279,00
+SS00033;15/04/2026;8200;Projectopbrengsten;VAST-03;Opdrachtgever VAST-03;29.475,00
+SS00034;17/04/2026;1305;Debiteuren;VAST-02;Opdrachtgever VAST-02;25.182,00
+SS00035;19/04/2026;4950;Algemene kosten;VAST-02;Installtech BV;-35.463,00
+SS00036;19/04/2026;4500;Materiaalkosten;VAST-02;BAM Infra;-13.281,00
+SS00037;20/04/2026;4600;Onderaanneming;VAST-02;Cementbouw;-35.433,00
+SS00038;22/04/2026;4500;Materiaalkosten;VAST-03;BAM Infra;-8.687,00
+SS00039;24/04/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;140.955,00
+SS00040;24/04/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;52.300,00
+SS00041;24/04/2026;1605;Crediteuren;VAST-03;BAM Infra;-25.878,00
+SS00042;24/04/2026;4600;Onderaanneming;VAST-01;Bouwmaat NL;-24.924,00
+SS00043;25/04/2026;4500;Materiaalkosten;VAST-02;Strukton;-3.360,00
+SS00044;26/04/2026;1605;Crediteuren;VAST-03;Bouwmaat NL;-39.378,00
+SS00045;26/04/2026;1605;Crediteuren;VAST-01;Heijmans;-59.377,00
+SS00046;26/04/2026;1305;Debiteuren;VAST-01;Opdrachtgever VAST-01;40.752,00
+SS00047;26/04/2026;8200;Projectopbrengsten;VAST-02;Opdrachtgever VAST-02;135.564,00
+SS00048;28/04/2026;1605;Crediteuren;VAST-01;Wonen Centraal;-9.863,00
+SS00049;28/04/2026;4500;Materiaalkosten;VAST-02;Installtech BV;-10.665,00
+SS00050;01/05/2026;1305;Debiteuren;VAST-03;Opdrachtgever VAST-03;86.150,00
+SS00051;02/05/2026;4600;Onderaanneming;VAST-01;Cementbouw;-33.457,00
+SS00052;03/05/2026;1305;Debiteuren;VAST-02;Opdrachtgever VAST-02;92.680,00
+SS00053;03/05/2026;4500;Materiaalkosten;VAST-02;Cementbouw;-13.633,00
+SS00054;04/05/2026;4950;Algemene kosten;VAST-03;Klaassen Staal;-26.023,00
+SS00055;06/05/2026;1305;Debiteuren;VAST-02;Opdrachtgever VAST-02;82.665,00
+SS00056;06/05/2026;4950;Algemene kosten;VAST-01;Saint-Gobain;-11.324,00
+SS00057;07/05/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;26.546,00
+SS00058;08/05/2026;8200;Projectopbrengsten;VAST-03;Opdrachtgever VAST-03;150.851,00
+SS00059;08/05/2026;4500;Materiaalkosten;VAST-03;Heijmans;-33.907,00
+SS00060;08/05/2026;8200;Projectopbrengsten;VAST-03;Opdrachtgever VAST-03;105.138,00
+SS00061;09/05/2026;4500;Materiaalkosten;VAST-01;Heijmans;-29.693,00
+SS00062;09/05/2026;1605;Crediteuren;VAST-03;Cementbouw;-48.179,00
+SS00063;10/05/2026;4600;Onderaanneming;VAST-03;Klaassen Staal;-7.661,00
+SS00064;18/05/2026;4500;Materiaalkosten;VAST-03;Heijmans;-12.683,00
+SS00065;19/05/2026;4600;Onderaanneming;VAST-02;Saint-Gobain;-35.294,00
+SS00066;20/05/2026;4600;Onderaanneming;VAST-01;Provincie Utrecht;-20.940,00
+SS00067;20/05/2026;1305;Debiteuren;VAST-03;Opdrachtgever VAST-03;118.803,00
+SS00068;21/05/2026;4600;Onderaanneming;VAST-03;Bouwmaat NL;-20.369,00
+SS00069;22/05/2026;4500;Materiaalkosten;VAST-01;Cementbouw;-7.480,00
+SS00070;22/05/2026;1605;Crediteuren;VAST-01;Bouwmaat NL;-56.880,00
+SS00071;23/05/2026;4600;Onderaanneming;VAST-01;Saint-Gobain;-39.236,00
+SS00072;23/05/2026;4950;Algemene kosten;VAST-02;Wonen Centraal;-9.036,00
+SS00073;23/05/2026;1605;Crediteuren;VAST-01;BAM Infra;-51.629,00
+SS00074;23/05/2026;4950;Algemene kosten;VAST-02;Van Dijk Onderaanneming;-31.642,00
+SS00075;23/05/2026;4950;Algemene kosten;VAST-03;Bouwmaat NL;-26.484,00
+SS00076;25/05/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;156.739,00
+SS00077;25/05/2026;1605;Crediteuren;VAST-03;Heijmans;-46.847,00
+SS00078;26/05/2026;4600;Onderaanneming;VAST-02;Provincie Utrecht;-20.389,00
+SS00079;26/05/2026;4950;Algemene kosten;VAST-03;Gemeente Utrecht;-3.696,00
+SS00080;26/05/2026;4950;Algemene kosten;VAST-01;BAM Infra;-19.165,00
+SS00081;27/05/2026;4500;Materiaalkosten;VAST-01;Bouwmaat NL;-27.029,00
+SS00082;27/05/2026;1605;Crediteuren;VAST-03;Installtech BV;-26.451,00
+SS00083;28/05/2026;8200;Projectopbrengsten;VAST-03;Opdrachtgever VAST-03;43.156,00
+SS00084;28/05/2026;1305;Debiteuren;VAST-01;Opdrachtgever VAST-01;36.461,00
+SS00085;29/05/2026;1305;Debiteuren;VAST-03;Opdrachtgever VAST-03;71.063,00
+SS00086;29/05/2026;8200;Projectopbrengsten;VAST-03;Opdrachtgever VAST-03;114.288,00
+SS00087;29/05/2026;1605;Crediteuren;VAST-02;Saint-Gobain;-15.629,00
+SS00088;03/06/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;97.162,00
+SS00089;03/06/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;35.488,00
+SS00090;03/06/2026;4600;Onderaanneming;VAST-03;Heijmans;-42.544,00
+SS00091;03/06/2026;1605;Crediteuren;VAST-02;Bouwmaat NL;-14.185,00
+SS00092;04/06/2026;4950;Algemene kosten;VAST-03;Klaassen Staal;-10.909,00
+SS00093;04/06/2026;4500;Materiaalkosten;VAST-01;CORRECTIE boeking;8.522,00
+SS00094;05/06/2026;8200;Projectopbrengsten;VAST-01;Opdrachtgever VAST-01;91.143,00

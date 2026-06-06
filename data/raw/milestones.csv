@@ -1,0 +1,311 @@
+milestone_id,project_id,planned_week,planned_date,driver,amount,description
+M0001,BOUW-01,3,2026-06-24,milestone_billing,332000.00,Termijn 1 Nieuwbouw Kantoor Lombok
+M0002,BOUW-01,8,2026-07-29,milestone_billing,565000.00,Termijn 2 Nieuwbouw Kantoor Lombok
+M0003,BOUW-01,12,2026-08-26,milestone_billing,863000.00,Termijn 3 Nieuwbouw Kantoor Lombok
+M0004,BOUW-01,1,2026-06-09,materials,-78500.00,Materiaal PO Nieuwbouw Kantoor Lombok wk1
+M0005,BOUW-01,2,2026-06-16,materials,-73500.00,Materiaal PO Nieuwbouw Kantoor Lombok wk2
+M0006,BOUW-01,3,2026-06-23,materials,-68000.00,Materiaal PO Nieuwbouw Kantoor Lombok wk3
+M0007,BOUW-01,4,2026-06-30,materials,-63000.00,Materiaal PO Nieuwbouw Kantoor Lombok wk4
+M0008,BOUW-01,5,2026-07-07,materials,-57500.00,Materiaal PO Nieuwbouw Kantoor Lombok wk5
+M0009,BOUW-01,6,2026-07-14,materials,-52500.00,Materiaal PO Nieuwbouw Kantoor Lombok wk6
+M0010,BOUW-01,7,2026-07-21,materials,-47000.00,Materiaal PO Nieuwbouw Kantoor Lombok wk7
+M0011,BOUW-01,8,2026-07-28,materials,-42000.00,Materiaal PO Nieuwbouw Kantoor Lombok wk8
+M0012,BOUW-01,9,2026-08-04,materials,-36500.00,Materiaal PO Nieuwbouw Kantoor Lombok wk9
+M0013,BOUW-01,10,2026-08-11,materials,-31500.00,Materiaal PO Nieuwbouw Kantoor Lombok wk10
+M0014,BOUW-01,11,2026-08-18,materials,-26000.00,Materiaal PO Nieuwbouw Kantoor Lombok wk11
+M0015,BOUW-01,12,2026-08-25,materials,-21000.00,Materiaal PO Nieuwbouw Kantoor Lombok wk12
+M0016,BOUW-01,1,2026-06-11,subcontractor,-21500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk1
+M0017,BOUW-01,2,2026-06-18,subcontractor,-25000.00,Onderaanneming Nieuwbouw Kantoor Lombok wk2
+M0018,BOUW-01,3,2026-06-25,subcontractor,-30500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk3
+M0019,BOUW-01,4,2026-07-02,subcontractor,-39500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk4
+M0020,BOUW-01,5,2026-07-09,subcontractor,-55500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk5
+M0021,BOUW-01,6,2026-07-16,subcontractor,-92000.00,Onderaanneming Nieuwbouw Kantoor Lombok wk6
+M0022,BOUW-01,7,2026-07-23,subcontractor,-92000.00,Onderaanneming Nieuwbouw Kantoor Lombok wk7
+M0023,BOUW-01,8,2026-07-30,subcontractor,-55500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk8
+M0024,BOUW-01,9,2026-08-06,subcontractor,-39500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk9
+M0025,BOUW-01,10,2026-08-13,subcontractor,-30500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk10
+M0026,BOUW-01,11,2026-08-20,subcontractor,-25000.00,Onderaanneming Nieuwbouw Kantoor Lombok wk11
+M0027,BOUW-01,12,2026-08-27,subcontractor,-21500.00,Onderaanneming Nieuwbouw Kantoor Lombok wk12
+M0028,BOUW-02,2,2026-06-17,milestone_billing,109000.00,Termijn 1 Renovatie Stadskantoor
+M0029,BOUW-02,6,2026-07-15,milestone_billing,186000.00,Termijn 2 Renovatie Stadskantoor
+M0030,BOUW-02,11,2026-08-19,milestone_billing,285000.00,Termijn 3 Renovatie Stadskantoor
+M0031,BOUW-02,1,2026-06-09,materials,-25000.00,Materiaal PO Renovatie Stadskantoor wk1
+M0032,BOUW-02,2,2026-06-16,materials,-23000.00,Materiaal PO Renovatie Stadskantoor wk2
+M0033,BOUW-02,3,2026-06-23,materials,-21500.00,Materiaal PO Renovatie Stadskantoor wk3
+M0034,BOUW-02,4,2026-06-30,materials,-19500.00,Materiaal PO Renovatie Stadskantoor wk4
+M0035,BOUW-02,5,2026-07-07,materials,-17500.00,Materiaal PO Renovatie Stadskantoor wk5
+M0036,BOUW-02,6,2026-07-14,materials,-16000.00,Materiaal PO Renovatie Stadskantoor wk6
+M0037,BOUW-02,7,2026-07-21,materials,-14000.00,Materiaal PO Renovatie Stadskantoor wk7
+M0038,BOUW-02,8,2026-07-28,materials,-12000.00,Materiaal PO Renovatie Stadskantoor wk8
+M0039,BOUW-02,9,2026-08-04,materials,-10500.00,Materiaal PO Renovatie Stadskantoor wk9
+M0040,BOUW-02,10,2026-08-11,materials,-8500.00,Materiaal PO Renovatie Stadskantoor wk10
+M0041,BOUW-02,11,2026-08-18,materials,-6500.00,Materiaal PO Renovatie Stadskantoor wk11
+M0042,BOUW-02,1,2026-06-11,subcontractor,-8500.00,Onderaanneming Renovatie Stadskantoor wk1
+M0043,BOUW-02,2,2026-06-18,subcontractor,-10000.00,Onderaanneming Renovatie Stadskantoor wk2
+M0044,BOUW-02,3,2026-06-25,subcontractor,-12500.00,Onderaanneming Renovatie Stadskantoor wk3
+M0045,BOUW-02,4,2026-07-02,subcontractor,-17000.00,Onderaanneming Renovatie Stadskantoor wk4
+M0046,BOUW-02,5,2026-07-09,subcontractor,-25500.00,Onderaanneming Renovatie Stadskantoor wk5
+M0047,BOUW-02,6,2026-07-16,subcontractor,-50500.00,Onderaanneming Renovatie Stadskantoor wk6
+M0048,BOUW-02,7,2026-07-23,subcontractor,-25500.00,Onderaanneming Renovatie Stadskantoor wk7
+M0049,BOUW-02,8,2026-07-30,subcontractor,-17000.00,Onderaanneming Renovatie Stadskantoor wk8
+M0050,BOUW-02,9,2026-08-06,subcontractor,-12500.00,Onderaanneming Renovatie Stadskantoor wk9
+M0051,BOUW-02,10,2026-08-13,subcontractor,-10000.00,Onderaanneming Renovatie Stadskantoor wk10
+M0052,BOUW-02,11,2026-08-20,subcontractor,-8500.00,Onderaanneming Renovatie Stadskantoor wk11
+M0053,BOUW-03,4,2026-07-01,milestone_billing,297000.00,Termijn 1 Woningen Leidsche Rijn
+M0054,BOUW-03,9,2026-08-05,milestone_billing,505000.00,Termijn 2 Woningen Leidsche Rijn
+M0055,BOUW-03,13,2026-09-02,milestone_billing,773000.00,Termijn 3 Woningen Leidsche Rijn
+M0056,BOUW-03,1,2026-06-09,materials,-69000.00,Materiaal PO Woningen Leidsche Rijn wk1
+M0057,BOUW-03,2,2026-06-16,materials,-64500.00,Materiaal PO Woningen Leidsche Rijn wk2
+M0058,BOUW-03,3,2026-06-23,materials,-60500.00,Materiaal PO Woningen Leidsche Rijn wk3
+M0059,BOUW-03,4,2026-06-30,materials,-56000.00,Materiaal PO Woningen Leidsche Rijn wk4
+M0060,BOUW-03,5,2026-07-07,materials,-52000.00,Materiaal PO Woningen Leidsche Rijn wk5
+M0061,BOUW-03,6,2026-07-14,materials,-48000.00,Materiaal PO Woningen Leidsche Rijn wk6
+M0062,BOUW-03,7,2026-07-21,materials,-43500.00,Materiaal PO Woningen Leidsche Rijn wk7
+M0063,BOUW-03,8,2026-07-28,materials,-39500.00,Materiaal PO Woningen Leidsche Rijn wk8
+M0064,BOUW-03,9,2026-08-04,materials,-35000.00,Materiaal PO Woningen Leidsche Rijn wk9
+M0065,BOUW-03,10,2026-08-11,materials,-31000.00,Materiaal PO Woningen Leidsche Rijn wk10
+M0066,BOUW-03,11,2026-08-18,materials,-27000.00,Materiaal PO Woningen Leidsche Rijn wk11
+M0067,BOUW-03,12,2026-08-25,materials,-22500.00,Materiaal PO Woningen Leidsche Rijn wk12
+M0068,BOUW-03,13,2026-09-01,materials,-18500.00,Materiaal PO Woningen Leidsche Rijn wk13
+M0069,BOUW-03,1,2026-06-11,subcontractor,-15000.00,Onderaanneming Woningen Leidsche Rijn wk1
+M0070,BOUW-03,2,2026-06-18,subcontractor,-17500.00,Onderaanneming Woningen Leidsche Rijn wk2
+M0071,BOUW-03,3,2026-06-25,subcontractor,-21000.00,Onderaanneming Woningen Leidsche Rijn wk3
+M0072,BOUW-03,4,2026-07-02,subcontractor,-26500.00,Onderaanneming Woningen Leidsche Rijn wk4
+M0073,BOUW-03,5,2026-07-09,subcontractor,-35000.00,Onderaanneming Woningen Leidsche Rijn wk5
+M0074,BOUW-03,6,2026-07-16,subcontractor,-52500.00,Onderaanneming Woningen Leidsche Rijn wk6
+M0075,BOUW-03,7,2026-07-23,subcontractor,-105500.00,Onderaanneming Woningen Leidsche Rijn wk7
+M0076,BOUW-03,8,2026-07-30,subcontractor,-52500.00,Onderaanneming Woningen Leidsche Rijn wk8
+M0077,BOUW-03,9,2026-08-06,subcontractor,-35000.00,Onderaanneming Woningen Leidsche Rijn wk9
+M0078,BOUW-03,10,2026-08-13,subcontractor,-26500.00,Onderaanneming Woningen Leidsche Rijn wk10
+M0079,BOUW-03,11,2026-08-20,subcontractor,-21000.00,Onderaanneming Woningen Leidsche Rijn wk11
+M0080,BOUW-03,12,2026-08-27,subcontractor,-17500.00,Onderaanneming Woningen Leidsche Rijn wk12
+M0081,BOUW-03,13,2026-09-03,subcontractor,-15000.00,Onderaanneming Woningen Leidsche Rijn wk13
+M0082,INFRA-01,3,2026-06-24,milestone_billing,311000.00,Termijn 1 Herinrichting N201
+M0083,INFRA-01,7,2026-07-22,milestone_billing,529000.00,Termijn 2 Herinrichting N201
+M0084,INFRA-01,12,2026-08-26,milestone_billing,809000.00,Termijn 3 Herinrichting N201
+M0085,INFRA-01,1,2026-06-09,materials,-87000.00,Materiaal PO Herinrichting N201 wk1
+M0086,INFRA-01,2,2026-06-16,materials,-81000.00,Materiaal PO Herinrichting N201 wk2
+M0087,INFRA-01,3,2026-06-23,materials,-75500.00,Materiaal PO Herinrichting N201 wk3
+M0088,INFRA-01,4,2026-06-30,materials,-69500.00,Materiaal PO Herinrichting N201 wk4
+M0089,INFRA-01,5,2026-07-07,materials,-63500.00,Materiaal PO Herinrichting N201 wk5
+M0090,INFRA-01,6,2026-07-14,materials,-58000.00,Materiaal PO Herinrichting N201 wk6
+M0091,INFRA-01,7,2026-07-21,materials,-52000.00,Materiaal PO Herinrichting N201 wk7
+M0092,INFRA-01,8,2026-07-28,materials,-46500.00,Materiaal PO Herinrichting N201 wk8
+M0093,INFRA-01,9,2026-08-04,materials,-40500.00,Materiaal PO Herinrichting N201 wk9
+M0094,INFRA-01,10,2026-08-11,materials,-34500.00,Materiaal PO Herinrichting N201 wk10
+M0095,INFRA-01,11,2026-08-18,materials,-29000.00,Materiaal PO Herinrichting N201 wk11
+M0096,INFRA-01,12,2026-08-25,materials,-23000.00,Materiaal PO Herinrichting N201 wk12
+M0097,INFRA-01,1,2026-06-11,subcontractor,-17500.00,Onderaanneming Herinrichting N201 wk1
+M0098,INFRA-01,2,2026-06-18,subcontractor,-20500.00,Onderaanneming Herinrichting N201 wk2
+M0099,INFRA-01,3,2026-06-25,subcontractor,-25000.00,Onderaanneming Herinrichting N201 wk3
+M0100,INFRA-01,4,2026-07-02,subcontractor,-32000.00,Onderaanneming Herinrichting N201 wk4
+M0101,INFRA-01,5,2026-07-09,subcontractor,-45000.00,Onderaanneming Herinrichting N201 wk5
+M0102,INFRA-01,6,2026-07-16,subcontractor,-75000.00,Onderaanneming Herinrichting N201 wk6
+M0103,INFRA-01,7,2026-07-23,subcontractor,-75000.00,Onderaanneming Herinrichting N201 wk7
+M0104,INFRA-01,8,2026-07-30,subcontractor,-45000.00,Onderaanneming Herinrichting N201 wk8
+M0105,INFRA-01,9,2026-08-06,subcontractor,-32000.00,Onderaanneming Herinrichting N201 wk9
+M0106,INFRA-01,10,2026-08-13,subcontractor,-25000.00,Onderaanneming Herinrichting N201 wk10
+M0107,INFRA-01,11,2026-08-20,subcontractor,-20500.00,Onderaanneming Herinrichting N201 wk11
+M0108,INFRA-01,12,2026-08-27,subcontractor,-17500.00,Onderaanneming Herinrichting N201 wk12
+M0109,INFRA-02,2,2026-06-17,milestone_billing,100000.00,Termijn 1 Rioolvervanging Centrum
+M0110,INFRA-02,6,2026-07-15,milestone_billing,170000.00,Termijn 2 Rioolvervanging Centrum
+M0111,INFRA-02,10,2026-08-12,milestone_billing,260000.00,Termijn 3 Rioolvervanging Centrum
+M0112,INFRA-02,1,2026-06-09,materials,-35000.00,Materiaal PO Rioolvervanging Centrum wk1
+M0113,INFRA-02,2,2026-06-16,materials,-32500.00,Materiaal PO Rioolvervanging Centrum wk2
+M0114,INFRA-02,3,2026-06-23,materials,-29500.00,Materiaal PO Rioolvervanging Centrum wk3
+M0115,INFRA-02,4,2026-06-30,materials,-26500.00,Materiaal PO Rioolvervanging Centrum wk4
+M0116,INFRA-02,5,2026-07-07,materials,-23500.00,Materiaal PO Rioolvervanging Centrum wk5
+M0117,INFRA-02,6,2026-07-14,materials,-21000.00,Materiaal PO Rioolvervanging Centrum wk6
+M0118,INFRA-02,7,2026-07-21,materials,-18000.00,Materiaal PO Rioolvervanging Centrum wk7
+M0119,INFRA-02,8,2026-07-28,materials,-15000.00,Materiaal PO Rioolvervanging Centrum wk8
+M0120,INFRA-02,9,2026-08-04,materials,-12500.00,Materiaal PO Rioolvervanging Centrum wk9
+M0121,INFRA-02,10,2026-08-11,materials,-9500.00,Materiaal PO Rioolvervanging Centrum wk10
+M0122,INFRA-02,1,2026-06-11,subcontractor,-6500.00,Onderaanneming Rioolvervanging Centrum wk1
+M0123,INFRA-02,2,2026-06-18,subcontractor,-8000.00,Onderaanneming Rioolvervanging Centrum wk2
+M0124,INFRA-02,3,2026-06-25,subcontractor,-10500.00,Onderaanneming Rioolvervanging Centrum wk3
+M0125,INFRA-02,4,2026-07-02,subcontractor,-14500.00,Onderaanneming Rioolvervanging Centrum wk4
+M0126,INFRA-02,5,2026-07-09,subcontractor,-24000.00,Onderaanneming Rioolvervanging Centrum wk5
+M0127,INFRA-02,6,2026-07-16,subcontractor,-24000.00,Onderaanneming Rioolvervanging Centrum wk6
+M0128,INFRA-02,7,2026-07-23,subcontractor,-14500.00,Onderaanneming Rioolvervanging Centrum wk7
+M0129,INFRA-02,8,2026-07-30,subcontractor,-10500.00,Onderaanneming Rioolvervanging Centrum wk8
+M0130,INFRA-02,9,2026-08-06,subcontractor,-8000.00,Onderaanneming Rioolvervanging Centrum wk9
+M0131,INFRA-02,10,2026-08-13,subcontractor,-6500.00,Onderaanneming Rioolvervanging Centrum wk10
+M0132,INFRA-03,5,2026-07-08,milestone_billing,129000.00,Termijn 1 Fietsbrug Merwedekanaal
+M0133,INFRA-03,9,2026-08-05,milestone_billing,220000.00,Termijn 2 Fietsbrug Merwedekanaal
+M0134,INFRA-03,13,2026-09-02,milestone_billing,337000.00,Termijn 3 Fietsbrug Merwedekanaal
+M0135,INFRA-03,1,2026-06-09,materials,-31500.00,Materiaal PO Fietsbrug Merwedekanaal wk1
+M0136,INFRA-03,2,2026-06-16,materials,-29500.00,Materiaal PO Fietsbrug Merwedekanaal wk2
+M0137,INFRA-03,3,2026-06-23,materials,-28000.00,Materiaal PO Fietsbrug Merwedekanaal wk3
+M0138,INFRA-03,4,2026-06-30,materials,-26000.00,Materiaal PO Fietsbrug Merwedekanaal wk4
+M0139,INFRA-03,5,2026-07-07,materials,-24000.00,Materiaal PO Fietsbrug Merwedekanaal wk5
+M0140,INFRA-03,6,2026-07-14,materials,-22000.00,Materiaal PO Fietsbrug Merwedekanaal wk6
+M0141,INFRA-03,7,2026-07-21,materials,-20000.00,Materiaal PO Fietsbrug Merwedekanaal wk7
+M0142,INFRA-03,8,2026-07-28,materials,-18000.00,Materiaal PO Fietsbrug Merwedekanaal wk8
+M0143,INFRA-03,9,2026-08-04,materials,-16000.00,Materiaal PO Fietsbrug Merwedekanaal wk9
+M0144,INFRA-03,10,2026-08-11,materials,-14000.00,Materiaal PO Fietsbrug Merwedekanaal wk10
+M0145,INFRA-03,11,2026-08-18,materials,-12500.00,Materiaal PO Fietsbrug Merwedekanaal wk11
+M0146,INFRA-03,12,2026-08-25,materials,-10500.00,Materiaal PO Fietsbrug Merwedekanaal wk12
+M0147,INFRA-03,13,2026-09-01,materials,-8500.00,Materiaal PO Fietsbrug Merwedekanaal wk13
+M0148,INFRA-03,1,2026-06-11,subcontractor,-7000.00,Onderaanneming Fietsbrug Merwedekanaal wk1
+M0149,INFRA-03,2,2026-06-18,subcontractor,-8000.00,Onderaanneming Fietsbrug Merwedekanaal wk2
+M0150,INFRA-03,3,2026-06-25,subcontractor,-10000.00,Onderaanneming Fietsbrug Merwedekanaal wk3
+M0151,INFRA-03,4,2026-07-02,subcontractor,-12500.00,Onderaanneming Fietsbrug Merwedekanaal wk4
+M0152,INFRA-03,5,2026-07-09,subcontractor,-16500.00,Onderaanneming Fietsbrug Merwedekanaal wk5
+M0153,INFRA-03,6,2026-07-16,subcontractor,-24500.00,Onderaanneming Fietsbrug Merwedekanaal wk6
+M0154,INFRA-03,7,2026-07-23,subcontractor,-49000.00,Onderaanneming Fietsbrug Merwedekanaal wk7
+M0155,INFRA-03,8,2026-07-30,subcontractor,-24500.00,Onderaanneming Fietsbrug Merwedekanaal wk8
+M0156,INFRA-03,9,2026-08-06,subcontractor,-16500.00,Onderaanneming Fietsbrug Merwedekanaal wk9
+M0157,INFRA-03,10,2026-08-13,subcontractor,-12500.00,Onderaanneming Fietsbrug Merwedekanaal wk10
+M0158,INFRA-03,11,2026-08-20,subcontractor,-10000.00,Onderaanneming Fietsbrug Merwedekanaal wk11
+M0159,INFRA-03,12,2026-08-27,subcontractor,-8000.00,Onderaanneming Fietsbrug Merwedekanaal wk12
+M0160,INFRA-03,13,2026-09-03,subcontractor,-7000.00,Onderaanneming Fietsbrug Merwedekanaal wk13
+M0161,INST-01,2,2026-06-17,milestone_billing,68000.00,Termijn 1 Klimaatinstallatie Hof
+M0162,INST-01,5,2026-07-08,milestone_billing,115000.00,Termijn 2 Klimaatinstallatie Hof
+M0163,INST-01,9,2026-08-05,milestone_billing,177000.00,Termijn 3 Klimaatinstallatie Hof
+M0164,INST-01,1,2026-06-09,materials,-28500.00,Materiaal PO Klimaatinstallatie Hof wk1
+M0165,INST-01,2,2026-06-16,materials,-26000.00,Materiaal PO Klimaatinstallatie Hof wk2
+M0166,INST-01,3,2026-06-23,materials,-23000.00,Materiaal PO Klimaatinstallatie Hof wk3
+M0167,INST-01,4,2026-06-30,materials,-20500.00,Materiaal PO Klimaatinstallatie Hof wk4
+M0168,INST-01,5,2026-07-07,materials,-18000.00,Materiaal PO Klimaatinstallatie Hof wk5
+M0169,INST-01,6,2026-07-14,materials,-15500.00,Materiaal PO Klimaatinstallatie Hof wk6
+M0170,INST-01,7,2026-07-21,materials,-13000.00,Materiaal PO Klimaatinstallatie Hof wk7
+M0171,INST-01,8,2026-07-28,materials,-10000.00,Materiaal PO Klimaatinstallatie Hof wk8
+M0172,INST-01,9,2026-08-04,materials,-7500.00,Materiaal PO Klimaatinstallatie Hof wk9
+M0173,INST-01,1,2026-06-11,subcontractor,-4000.00,Onderaanneming Klimaatinstallatie Hof wk1
+M0174,INST-01,2,2026-06-18,subcontractor,-5000.00,Onderaanneming Klimaatinstallatie Hof wk2
+M0175,INST-01,3,2026-06-25,subcontractor,-6500.00,Onderaanneming Klimaatinstallatie Hof wk3
+M0176,INST-01,4,2026-07-02,subcontractor,-10000.00,Onderaanneming Klimaatinstallatie Hof wk4
+M0177,INST-01,5,2026-07-09,subcontractor,-20000.00,Onderaanneming Klimaatinstallatie Hof wk5
+M0178,INST-01,6,2026-07-16,subcontractor,-10000.00,Onderaanneming Klimaatinstallatie Hof wk6
+M0179,INST-01,7,2026-07-23,subcontractor,-6500.00,Onderaanneming Klimaatinstallatie Hof wk7
+M0180,INST-01,8,2026-07-30,subcontractor,-5000.00,Onderaanneming Klimaatinstallatie Hof wk8
+M0181,INST-01,9,2026-08-06,subcontractor,-4000.00,Onderaanneming Klimaatinstallatie Hof wk9
+M0182,INST-02,3,2026-06-24,milestone_billing,78000.00,Termijn 1 Elektra Zorgcomplex
+M0183,INST-02,7,2026-07-22,milestone_billing,133000.00,Termijn 2 Elektra Zorgcomplex
+M0184,INST-02,11,2026-08-19,milestone_billing,204000.00,Termijn 3 Elektra Zorgcomplex
+M0185,INST-02,1,2026-06-09,materials,-28500.00,Materiaal PO Elektra Zorgcomplex wk1
+M0186,INST-02,2,2026-06-16,materials,-26500.00,Materiaal PO Elektra Zorgcomplex wk2
+M0187,INST-02,3,2026-06-23,materials,-24500.00,Materiaal PO Elektra Zorgcomplex wk3
+M0188,INST-02,4,2026-06-30,materials,-22500.00,Materiaal PO Elektra Zorgcomplex wk4
+M0189,INST-02,5,2026-07-07,materials,-20500.00,Materiaal PO Elektra Zorgcomplex wk5
+M0190,INST-02,6,2026-07-14,materials,-18000.00,Materiaal PO Elektra Zorgcomplex wk6
+M0191,INST-02,7,2026-07-21,materials,-16000.00,Materiaal PO Elektra Zorgcomplex wk7
+M0192,INST-02,8,2026-07-28,materials,-14000.00,Materiaal PO Elektra Zorgcomplex wk8
+M0193,INST-02,9,2026-08-04,materials,-12000.00,Materiaal PO Elektra Zorgcomplex wk9
+M0194,INST-02,10,2026-08-11,materials,-9500.00,Materiaal PO Elektra Zorgcomplex wk10
+M0195,INST-02,11,2026-08-18,materials,-7500.00,Materiaal PO Elektra Zorgcomplex wk11
+M0196,INST-02,1,2026-06-11,subcontractor,-3000.00,Onderaanneming Elektra Zorgcomplex wk1
+M0197,INST-02,2,2026-06-18,subcontractor,-4000.00,Onderaanneming Elektra Zorgcomplex wk2
+M0198,INST-02,3,2026-06-25,subcontractor,-5000.00,Onderaanneming Elektra Zorgcomplex wk3
+M0199,INST-02,4,2026-07-02,subcontractor,-6500.00,Onderaanneming Elektra Zorgcomplex wk4
+M0200,INST-02,5,2026-07-09,subcontractor,-9500.00,Onderaanneming Elektra Zorgcomplex wk5
+M0201,INST-02,6,2026-07-16,subcontractor,-19000.00,Onderaanneming Elektra Zorgcomplex wk6
+M0202,INST-02,7,2026-07-23,subcontractor,-9500.00,Onderaanneming Elektra Zorgcomplex wk7
+M0203,INST-02,8,2026-07-30,subcontractor,-6500.00,Onderaanneming Elektra Zorgcomplex wk8
+M0204,INST-02,9,2026-08-06,subcontractor,-5000.00,Onderaanneming Elektra Zorgcomplex wk9
+M0205,INST-02,10,2026-08-13,subcontractor,-4000.00,Onderaanneming Elektra Zorgcomplex wk10
+M0206,INST-02,11,2026-08-20,subcontractor,-3000.00,Onderaanneming Elektra Zorgcomplex wk11
+M0207,INST-03,1,2026-06-10,milestone_billing,27000.00,Termijn 1 Data/CV Bedrijfshal
+M0208,INST-03,4,2026-07-01,milestone_billing,46000.00,Termijn 2 Data/CV Bedrijfshal
+M0209,INST-03,8,2026-07-29,milestone_billing,70000.00,Termijn 3 Data/CV Bedrijfshal
+M0210,INST-03,1,2026-06-09,materials,-14000.00,Materiaal PO Data/CV Bedrijfshal wk1
+M0211,INST-03,2,2026-06-16,materials,-12500.00,Materiaal PO Data/CV Bedrijfshal wk2
+M0212,INST-03,3,2026-06-23,materials,-11000.00,Materiaal PO Data/CV Bedrijfshal wk3
+M0213,INST-03,4,2026-06-30,materials,-9500.00,Materiaal PO Data/CV Bedrijfshal wk4
+M0214,INST-03,5,2026-07-07,materials,-8000.00,Materiaal PO Data/CV Bedrijfshal wk5
+M0215,INST-03,6,2026-07-14,materials,-6500.00,Materiaal PO Data/CV Bedrijfshal wk6
+M0216,INST-03,7,2026-07-21,materials,-5500.00,Materiaal PO Data/CV Bedrijfshal wk7
+M0217,INST-03,8,2026-07-28,materials,-4000.00,Materiaal PO Data/CV Bedrijfshal wk8
+M0218,INST-03,1,2026-06-11,subcontractor,-1500.00,Onderaanneming Data/CV Bedrijfshal wk1
+M0219,INST-03,2,2026-06-18,subcontractor,-2000.00,Onderaanneming Data/CV Bedrijfshal wk2
+M0220,INST-03,3,2026-06-25,subcontractor,-3000.00,Onderaanneming Data/CV Bedrijfshal wk3
+M0221,INST-03,4,2026-07-02,subcontractor,-5000.00,Onderaanneming Data/CV Bedrijfshal wk4
+M0222,INST-03,5,2026-07-09,subcontractor,-5000.00,Onderaanneming Data/CV Bedrijfshal wk5
+M0223,INST-03,6,2026-07-16,subcontractor,-3000.00,Onderaanneming Data/CV Bedrijfshal wk6
+M0224,INST-03,7,2026-07-23,subcontractor,-2000.00,Onderaanneming Data/CV Bedrijfshal wk7
+M0225,INST-03,8,2026-07-30,subcontractor,-1500.00,Onderaanneming Data/CV Bedrijfshal wk8
+M0226,VAST-01,4,2026-07-01,milestone_billing,287000.00,Termijn 1 Gebiedsontw. Kade-Oost
+M0227,VAST-01,8,2026-07-29,milestone_billing,488000.00,Termijn 2 Gebiedsontw. Kade-Oost
+M0228,VAST-01,13,2026-09-02,milestone_billing,746000.00,Termijn 3 Gebiedsontw. Kade-Oost
+M0229,VAST-01,1,2026-06-09,materials,-51500.00,Materiaal PO Gebiedsontw. Kade-Oost wk1
+M0230,VAST-01,2,2026-06-16,materials,-48500.00,Materiaal PO Gebiedsontw. Kade-Oost wk2
+M0231,VAST-01,3,2026-06-23,materials,-45500.00,Materiaal PO Gebiedsontw. Kade-Oost wk3
+M0232,VAST-01,4,2026-06-30,materials,-42000.00,Materiaal PO Gebiedsontw. Kade-Oost wk4
+M0233,VAST-01,5,2026-07-07,materials,-39000.00,Materiaal PO Gebiedsontw. Kade-Oost wk5
+M0234,VAST-01,6,2026-07-14,materials,-36000.00,Materiaal PO Gebiedsontw. Kade-Oost wk6
+M0235,VAST-01,7,2026-07-21,materials,-32500.00,Materiaal PO Gebiedsontw. Kade-Oost wk7
+M0236,VAST-01,8,2026-07-28,materials,-29500.00,Materiaal PO Gebiedsontw. Kade-Oost wk8
+M0237,VAST-01,9,2026-08-04,materials,-26500.00,Materiaal PO Gebiedsontw. Kade-Oost wk9
+M0238,VAST-01,10,2026-08-11,materials,-23500.00,Materiaal PO Gebiedsontw. Kade-Oost wk10
+M0239,VAST-01,11,2026-08-18,materials,-20000.00,Materiaal PO Gebiedsontw. Kade-Oost wk11
+M0240,VAST-01,12,2026-08-25,materials,-17000.00,Materiaal PO Gebiedsontw. Kade-Oost wk12
+M0241,VAST-01,13,2026-09-01,materials,-14000.00,Materiaal PO Gebiedsontw. Kade-Oost wk13
+M0242,VAST-01,1,2026-06-11,subcontractor,-15500.00,Onderaanneming Gebiedsontw. Kade-Oost wk1
+M0243,VAST-01,2,2026-06-18,subcontractor,-18000.00,Onderaanneming Gebiedsontw. Kade-Oost wk2
+M0244,VAST-01,3,2026-06-25,subcontractor,-22000.00,Onderaanneming Gebiedsontw. Kade-Oost wk3
+M0245,VAST-01,4,2026-07-02,subcontractor,-27000.00,Onderaanneming Gebiedsontw. Kade-Oost wk4
+M0246,VAST-01,5,2026-07-09,subcontractor,-36500.00,Onderaanneming Gebiedsontw. Kade-Oost wk5
+M0247,VAST-01,6,2026-07-16,subcontractor,-54500.00,Onderaanneming Gebiedsontw. Kade-Oost wk6
+M0248,VAST-01,7,2026-07-23,subcontractor,-109000.00,Onderaanneming Gebiedsontw. Kade-Oost wk7
+M0249,VAST-01,8,2026-07-30,subcontractor,-54500.00,Onderaanneming Gebiedsontw. Kade-Oost wk8
+M0250,VAST-01,9,2026-08-06,subcontractor,-36500.00,Onderaanneming Gebiedsontw. Kade-Oost wk9
+M0251,VAST-01,10,2026-08-13,subcontractor,-27000.00,Onderaanneming Gebiedsontw. Kade-Oost wk10
+M0252,VAST-01,11,2026-08-20,subcontractor,-22000.00,Onderaanneming Gebiedsontw. Kade-Oost wk11
+M0253,VAST-01,12,2026-08-27,subcontractor,-18000.00,Onderaanneming Gebiedsontw. Kade-Oost wk12
+M0254,VAST-01,13,2026-09-03,subcontractor,-15500.00,Onderaanneming Gebiedsontw. Kade-Oost wk13
+M0255,VAST-02,3,2026-06-24,milestone_billing,79000.00,Termijn 1 Transformatie Pakhuis
+M0256,VAST-02,7,2026-07-22,milestone_billing,134000.00,Termijn 2 Transformatie Pakhuis
+M0257,VAST-02,12,2026-08-26,milestone_billing,205000.00,Termijn 3 Transformatie Pakhuis
+M0258,VAST-02,1,2026-06-09,materials,-17500.00,Materiaal PO Transformatie Pakhuis wk1
+M0259,VAST-02,2,2026-06-16,materials,-16500.00,Materiaal PO Transformatie Pakhuis wk2
+M0260,VAST-02,3,2026-06-23,materials,-15500.00,Materiaal PO Transformatie Pakhuis wk3
+M0261,VAST-02,4,2026-06-30,materials,-14000.00,Materiaal PO Transformatie Pakhuis wk4
+M0262,VAST-02,5,2026-07-07,materials,-13000.00,Materiaal PO Transformatie Pakhuis wk5
+M0263,VAST-02,6,2026-07-14,materials,-11500.00,Materiaal PO Transformatie Pakhuis wk6
+M0264,VAST-02,7,2026-07-21,materials,-10500.00,Materiaal PO Transformatie Pakhuis wk7
+M0265,VAST-02,8,2026-07-28,materials,-9500.00,Materiaal PO Transformatie Pakhuis wk8
+M0266,VAST-02,9,2026-08-04,materials,-8000.00,Materiaal PO Transformatie Pakhuis wk9
+M0267,VAST-02,10,2026-08-11,materials,-7000.00,Materiaal PO Transformatie Pakhuis wk10
+M0268,VAST-02,11,2026-08-18,materials,-6000.00,Materiaal PO Transformatie Pakhuis wk11
+M0269,VAST-02,12,2026-08-25,materials,-4500.00,Materiaal PO Transformatie Pakhuis wk12
+M0270,VAST-02,1,2026-06-11,subcontractor,-4500.00,Onderaanneming Transformatie Pakhuis wk1
+M0271,VAST-02,2,2026-06-18,subcontractor,-5500.00,Onderaanneming Transformatie Pakhuis wk2
+M0272,VAST-02,3,2026-06-25,subcontractor,-7000.00,Onderaanneming Transformatie Pakhuis wk3
+M0273,VAST-02,4,2026-07-02,subcontractor,-9000.00,Onderaanneming Transformatie Pakhuis wk4
+M0274,VAST-02,5,2026-07-09,subcontractor,-12500.00,Onderaanneming Transformatie Pakhuis wk5
+M0275,VAST-02,6,2026-07-16,subcontractor,-20500.00,Onderaanneming Transformatie Pakhuis wk6
+M0276,VAST-02,7,2026-07-23,subcontractor,-20500.00,Onderaanneming Transformatie Pakhuis wk7
+M0277,VAST-02,8,2026-07-30,subcontractor,-12500.00,Onderaanneming Transformatie Pakhuis wk8
+M0278,VAST-02,9,2026-08-06,subcontractor,-9000.00,Onderaanneming Transformatie Pakhuis wk9
+M0279,VAST-02,10,2026-08-13,subcontractor,-7000.00,Onderaanneming Transformatie Pakhuis wk10
+M0280,VAST-02,11,2026-08-20,subcontractor,-5500.00,Onderaanneming Transformatie Pakhuis wk11
+M0281,VAST-02,12,2026-08-27,subcontractor,-4500.00,Onderaanneming Transformatie Pakhuis wk12
+M0282,VAST-03,5,2026-07-08,milestone_billing,164000.00,Termijn 1 Parkeergarage P+R
+M0283,VAST-03,10,2026-08-12,milestone_billing,278000.00,Termijn 2 Parkeergarage P+R
+M0284,VAST-03,13,2026-09-02,milestone_billing,426000.00,Termijn 3 Parkeergarage P+R
+M0285,VAST-03,1,2026-06-09,materials,-37000.00,Materiaal PO Parkeergarage P+R wk1
+M0286,VAST-03,2,2026-06-16,materials,-34500.00,Materiaal PO Parkeergarage P+R wk2
+M0287,VAST-03,3,2026-06-23,materials,-32500.00,Materiaal PO Parkeergarage P+R wk3
+M0288,VAST-03,4,2026-06-30,materials,-30000.00,Materiaal PO Parkeergarage P+R wk4
+M0289,VAST-03,5,2026-07-07,materials,-28000.00,Materiaal PO Parkeergarage P+R wk5
+M0290,VAST-03,6,2026-07-14,materials,-25500.00,Materiaal PO Parkeergarage P+R wk6
+M0291,VAST-03,7,2026-07-21,materials,-23500.00,Materiaal PO Parkeergarage P+R wk7
+M0292,VAST-03,8,2026-07-28,materials,-21000.00,Materiaal PO Parkeergarage P+R wk8
+M0293,VAST-03,9,2026-08-04,materials,-19000.00,Materiaal PO Parkeergarage P+R wk9
+M0294,VAST-03,10,2026-08-11,materials,-16500.00,Materiaal PO Parkeergarage P+R wk10
+M0295,VAST-03,11,2026-08-18,materials,-14500.00,Materiaal PO Parkeergarage P+R wk11
+M0296,VAST-03,12,2026-08-25,materials,-12000.00,Materiaal PO Parkeergarage P+R wk12
+M0297,VAST-03,13,2026-09-01,materials,-10000.00,Materiaal PO Parkeergarage P+R wk13
+M0298,VAST-03,1,2026-06-11,subcontractor,-8000.00,Onderaanneming Parkeergarage P+R wk1
+M0299,VAST-03,2,2026-06-18,subcontractor,-9500.00,Onderaanneming Parkeergarage P+R wk2
+M0300,VAST-03,3,2026-06-25,subcontractor,-11000.00,Onderaanneming Parkeergarage P+R wk3
+M0301,VAST-03,4,2026-07-02,subcontractor,-14000.00,Onderaanneming Parkeergarage P+R wk4
+M0302,VAST-03,5,2026-07-09,subcontractor,-18500.00,Onderaanneming Parkeergarage P+R wk5
+M0303,VAST-03,6,2026-07-16,subcontractor,-28000.00,Onderaanneming Parkeergarage P+R wk6
+M0304,VAST-03,7,2026-07-23,subcontractor,-56000.00,Onderaanneming Parkeergarage P+R wk7
+M0305,VAST-03,8,2026-07-30,subcontractor,-28000.00,Onderaanneming Parkeergarage P+R wk8
+M0306,VAST-03,9,2026-08-06,subcontractor,-18500.00,Onderaanneming Parkeergarage P+R wk9
+M0307,VAST-03,10,2026-08-13,subcontractor,-14000.00,Onderaanneming Parkeergarage P+R wk10
+M0308,VAST-03,11,2026-08-20,subcontractor,-11000.00,Onderaanneming Parkeergarage P+R wk11
+M0309,VAST-03,12,2026-08-27,subcontractor,-9500.00,Onderaanneming Parkeergarage P+R wk12
+M0310,VAST-03,13,2026-09-03,subcontractor,-8000.00,Onderaanneming Parkeergarage P+R wk13
