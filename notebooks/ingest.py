@@ -426,7 +426,11 @@ def main():
     args = ap.parse_args()
     os.makedirs(args.outdir, exist_ok=True)
 
-    events, recon = ingest_folder(args.indir, gross_up=not args.no_gross_up)
+    if os.path.isfile(args.indir):
+        ev, rc = ingest_file(args.indir, gross_up=not args.no_gross_up)
+        events, recon = ev, [rc]
+    else:
+        events, recon = ingest_folder(args.indir, gross_up=not args.no_gross_up)
     horizon = window_to_horizon(events, anchor=args.anchor)
 
     # ---- write outputs ----
