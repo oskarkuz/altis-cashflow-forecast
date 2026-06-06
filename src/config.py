@@ -120,3 +120,33 @@ GL_ACCOUNTS = {
 PAYMENT_TERMS_DAYS = 30          # invoice -> cash shift; 0 = invoice-date literal
 SEASONAL_YEARS = [2023, 2024, 2025]   # prior years averaged for the seasonal base
 YOY_CLAMP = (0.5, 2.0)           # clamp band for the year-on-year growth factor
+
+# --------------------------------------------------------------------------- #
+# WEATHER — real Open-Meteo data for the roofing company's location.
+# Roofing is weather-sensitive: rain / frost / snow / high wind = lost workdays,
+# which move revenue. We compare the SEAS5 SEASONAL FORECAST for the window
+# against the historical CLIMATOLOGY for the same ISO-weeks and nudge the
+# seasonal revenue forecast accordingly (not a flat multiplier).
+# --------------------------------------------------------------------------- #
+WEATHER_LOCATION = {"name": "Brunssum", "latitude": 50.9489, "longitude": 5.9725}
+WEATHER_CACHE = os.path.join(ROOT, "weather_data")     # committed, deterministic
+WEATHER_HISTORY_START = "2023-01-01"                   # climatology base
+WEATHER_TZ = "Europe/Amsterdam"
+
+# A roofing "lost day" rule (all thresholds tunable).
+WEATHER_RULE = {
+    "precip_mm": 5.0,      # > this much rain in a day = not workable on the roof
+    "frost_c": 0.0,        # tmin <= this = frost = not workable
+    "wind_kmh": 45.0,      # max wind above this = not workable (safety)
+    "snow_cm": 0.0,        # any snowfall = not workable
+}
+
+# Couple weather into the forecast (toggle off to get the pure seasonal model).
+WEATHER_ADJUST = True
+WEATHER_FACTOR_CLAMP = (0.7, 1.3)   # how far weather may move a week's revenue
+
+# Open-Meteo endpoints (fetched via curl, cached to WEATHER_CACHE for determinism).
+OPENMETEO_ARCHIVE = "https://archive-api.open-meteo.com/v1/archive"
+OPENMETEO_SEASONAL = "https://seasonal-api.open-meteo.com/v1/seasonal"
+WEATHER_DAILY_VARS = ["precipitation_sum", "temperature_2m_max",
+                      "temperature_2m_min", "snowfall_sum", "wind_speed_10m_max"]

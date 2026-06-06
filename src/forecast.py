@@ -44,14 +44,22 @@ def yoy_factor(actuals, current_year=None, prior_year=None, clamp=None):
 
 
 def build_forecast(actuals, start_date=None, n_weeks=None, payment_terms_days=None,
-                   seasonal_years=None, yoy_clamp=None):
-    """Return (forecast_events, seasonal_basis) DataFrames."""
+                   seasonal_years=None, yoy_clamp=None, weather_factors=None):
+    """Return (forecast_events, seasonal_basis) DataFrames.
+
+    If weather_factors {week -> {"factor": x, ...}} is given and WEATHER_ADJUST is
+    on, each week's revenue is nudged by its weather factor (SEAS5 roofing-
+    workability vs the ISO-week climatology). The seasonal base is unchanged;
+    weather only re-weights it, and the nudge is recorded as an assumption.
+    """
     start_date = start_date or config.FORECAST_START
     n_weeks = n_weeks or config.N_WEEKS
     payment_terms_days = config.PAYMENT_TERMS_DAYS if payment_terms_days is None \
         else payment_terms_days
     seasonal_years = config.SEASONAL_YEARS if seasonal_years is None else seasonal_years
     yoy_clamp = yoy_clamp or config.YOY_CLAMP
+    weather_factors = weather_factors or {}
+    use_weather = config.WEATHER_ADJUST and bool(weather_factors)
 
     wk = weekly_actuals(actuals)
     current_year = start_date.year
@@ -65,6 +73,7 @@ def build_forecast(actuals, start_date=None, n_weeks=None, payment_terms_days=No
         cash_date = start_date + dt.timedelta(weeks=k - 1)
         invoice_date = cash_date - dt.timedelta(days=payment_terms_days)
         inv_wk = invoice_date.isocalendar().week
+        wfac = weather_factors.get(k, {}).get("factor", 1.0) if use_weather else 1.0
         for cat in cats:
             sub = wk[(wk["iso_week"] == inv_wk) & (wk["vat_category"] == cat)
                      & (wk["iso_year"].isin(seasonal_years))]
@@ -73,32 +82,32 @@ def build_forecast(actuals, start_date=None, n_weeks=None, payment_terms_days=No
                             & (actuals["iso_year"].isin(seasonal_years))]
             has_base = len(sub) > 0
             base_mean = float(sub["cash"].mean()) if has_base else 0.0
-            amount = round(base_mean * factor, 2)
+            pre_weather = round(base_mean * factor, 2)
+            amount = round(pre_weather * wfac, 2)
             if has_base:
                 assumptions = [
                     f"seasonal: ISO-wk {inv_wk}, mean of {sorted(sub['iso_year'].tolist())}",
                     f"YoY x{factor:g}",
                 ]
-                lag_tag = (f"payment lag {payment_terms_days}d (assumption)"
-                           if payment_terms_days else "invoice-date (no lag)")
-                assumptions.append(lag_tag)
+                assumptions.append(f"payment lag {payment_terms_days}d (assumption)"
+                                   if payment_terms_days else "invoice-date (no lag)")
+                if use_weather and abs(wfac - 1.0) > 1e-9:
+                    assumptions.append(f"weather x{wfac:g} (SEAS5 vs ISO-wk norm)")
             else:
                 assumptions = [f"no seasonal base for ISO-wk {inv_wk}"]
             ev_rows.append({
                 "event_id": f"FC-W{k}-{cat}",
-                "week": k,
-                "cash_date": cash_date,
-                "invoice_iso_week": inv_wk,
-                "vat_category": cat,
-                "driver": "milestone_billing",
-                "amount": amount,
+                "week": k, "cash_date": cash_date, "invoice_iso_week": inv_wk,
+                "vat_category": cat, "driver": "milestone_billing",
+                "amount": amount, "weather_factor": wfac,
                 "assumptions": assumptions,
                 "seed_event_ids": seeds["event_id"].tolist(),
             })
             basis_rows.append({
                 "week": k, "cash_date": cash_date, "invoice_iso_week": inv_wk,
                 "vat_category": cat, "base_mean": round(base_mean, 2),
-                "yoy_factor": factor, "amount": amount,
+                "yoy_factor": factor, "weather_factor": wfac,
+                "amount_pre_weather": pre_weather, "amount": amount,
                 "n_seed_rows": len(seeds),
                 "seed_years": sorted(sub["iso_year"].tolist()),
             })

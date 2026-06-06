@@ -9,6 +9,7 @@ from __future__ import annotations
 import pandas as pd
 
 from . import config, excel_ingest, forecast
+from . import weather_forecast as wf
 
 
 def weekly_by_category(forecast_events):
@@ -42,19 +43,37 @@ def _kpis(actuals, forecast_events):
 
 def run(glob_pattern=None):
     actuals, recon = excel_ingest.load_revenue_actuals(glob_pattern)
-    events, basis = forecast.build_forecast(actuals)
+
+    # Weather (real SEAS5 + historical climatology), cached + graceful.
+    weather_factors, weather_forward, weather_summary = {}, pd.DataFrame(), {}
+    if config.WEATHER_ADJUST:
+        try:
+            weather_factors, weather_forward = wf.weekly_factors()
+            weather_summary = wf.summary(weather_factors)
+        except Exception as e:  # never let weather break the forecast
+            print("[pipeline] weather disabled:", e)
+
+    events, basis = forecast.build_forecast(actuals, weather_factors=weather_factors)
     recon_report = {
         "files": recon,
         "n_files": len(recon),
         "all_pass": all(r["reconciles"] for r in recon) if recon else False,
         "total_reconciled": round(sum(r["net_sum"] for r in recon), 2),
     }
+    pre = round(float(basis["amount_pre_weather"].sum()), 2) if not basis.empty else 0.0
+    post = round(float(events["amount"].sum()), 2) if not events.empty else 0.0
     return {
         "company": config.COMPANY,
+        "location": config.WEATHER_LOCATION["name"],
         "revenue_actuals": actuals,
         "recon_report": recon_report,
         "forecast_events": events,
         "weekly_forecast": weekly_by_category(events),
         "seasonal_basis": basis,
+        "weather_factors": weather_factors,
+        "weather_forward": weather_forward,
+        "weather_summary": weather_summary,
+        "weather_revenue_delta": round(post - pre, 2),
+        "weather_pre_total": pre,
         "kpis": _kpis(actuals, events),
     }
