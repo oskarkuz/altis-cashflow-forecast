@@ -1,0 +1,76 @@
+JournalEntryID,EntryDate,GLAccountCode,GLAccountDescription,CostCenter,Relation,AmountDC
+EXJ00001,03/09/2026,1300,Debiteuren,BOUW-01,Opdrachtgever BOUW-01,108626.00
+EXJ00002,03/14/2026,1300,Debiteuren,BOUW-02,Opdrachtgever BOUW-02,81125.00
+EXJ00003,03/15/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,78385.00
+EXJ00004,03/16/2026,8000,Projectopbrengsten,BOUW-01,Opdrachtgever BOUW-01,37679.00
+EXJ00005,03/22/2026,7000,Materiaalkosten,BOUW-01,BAM Infra,-38938.00
+EXJ00006,03/22/2026,1600,Crediteuren,BOUW-03,Gemeente Utrecht,-14031.00
+EXJ00007,03/26/2026,1600,Crediteuren,BOUW-03,Provincie Utrecht,-24491.00
+EXJ00008,03/27/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,86019.00
+EXJ00009,03/28/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,47249.00
+EXJ00010,03/28/2026,8000,Projectopbrengsten,BOUW-01,Opdrachtgever BOUW-01,156055.00
+EXJ00011,03/29/2026,1600,Crediteuren,BOUW-02,Saint-Gobain,-30821.00
+EXJ00012,03/30/2026,4300,Algemene kosten,BOUW-03,Strukton,-38269.00
+EXJ00013,03/31/2026,4300,Algemene kosten,BOUW-02,Heijmans,-41032.00
+EXJ00014,04/02/2026,1300,Debiteuren,BOUW-03,Opdrachtgever BOUW-03,48671.00
+EXJ00015,04/02/2026,7000,Materiaalkosten,BOUW-03,Installtech BV,-16033.00
+EXJ00016,04/04/2026,1600,Crediteuren,BOUW-01,Wonen Centraal,-12897.00
+EXJ00017,04/04/2026,1300,Debiteuren,BOUW-01,Opdrachtgever BOUW-01,47798.00
+EXJ00018,04/04/2026,8000,Projectopbrengsten,BOUW-01,Opdrachtgever BOUW-01,129302.00
+EXJ00019,04/04/2026,4300,Algemene kosten,BOUW-02,Installtech BV,-24043.00
+EXJ00020,04/06/2026,7000,Materiaalkosten,BOUW-02,Bouwmaat NL,-36805.00
+EXJ00021,04/07/2026,8000,Projectopbrengsten,BOUW-02,Opdrachtgever BOUW-02,85953.00
+EXJ00022,04/08/2026,7100,Onderaanneming,BOUW-02,Wonen Centraal,-33937.00
+EXJ00023,04/11/2026,8000,Projectopbrengsten,BOUW-01,Opdrachtgever BOUW-01,101773.00
+EXJ00024,04/11/2026,4300,Algemene kosten,BOUW-01,Van Dijk Onderaanneming,-4747.00
+EXJ00025,04/15/2026,8000,Projectopbrengsten,BOUW-02,Opdrachtgever BOUW-02,68561.00
+EXJ00026,04/17/2026,7100,Onderaanneming,BOUW-01,Bouwmaat NL,-28319.00
+EXJ00027,04/17/2026,8000,Projectopbrengsten,BOUW-02,Opdrachtgever BOUW-02,129745.00
+EXJ00028,04/18/2026,1600,Crediteuren,BOUW-01,Klaassen Staal,-9015.00
+EXJ00029,04/18/2026,4300,Algemene kosten,BOUW-02,Gemeente Utrecht,-16925.00
+EXJ00030,04/20/2026,7100,Onderaanneming,BOUW-03,Klaassen Staal,-18274.00
+EXJ00031,04/22/2026,1600,Crediteuren,BOUW-02,Provincie Utrecht,-48641.00
+EXJ00032,04/22/2026,4300,Algemene kosten,BOUW-01,Installtech BV,-31688.00
+EXJ00033,04/22/2026,7000,Materiaalkosten,BOUW-02,Strukton,-7810.00
+EXJ00034,04/23/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,63213.00
+EXJ00035,04/23/2026,7000,Materiaalkosten,BOUW-01,Saint-Gobain,-31463.00
+EXJ00036,04/23/2026,8000,Projectopbrengsten,BOUW-02,Opdrachtgever BOUW-02,151295.00
+EXJ00037,04/24/2026,8000,Projectopbrengsten,BOUW-01,Opdrachtgever BOUW-01,51767.00
+EXJ00038,04/25/2026,7000,Materiaalkosten,BOUW-03,Wonen Centraal,-23439.00
+EXJ00039,04/25/2026,1300,Debiteuren,BOUW-01,Opdrachtgever BOUW-01,50236.00
+EXJ00040,04/26/2026,7000,Materiaalkosten,BOUW-03,Gemeente Utrecht,-36963.00
+EXJ00041,04/28/2026,4300,Algemene kosten,BOUW-03,Van Dijk Onderaanneming,-15109.00
+EXJ00042,04/28/2026,7000,Materiaalkosten,BOUW-01,BAM Infra,-12645.00
+EXJ00043,04/30/2026,1300,Debiteuren,BOUW-02,Opdrachtgever BOUW-02,48727.00
+EXJ00044,05/01/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,83064.00
+EXJ00045,05/03/2026,1600,Crediteuren,BOUW-01,Van Dijk Onderaanneming,-57282.00
+EXJ00046,05/04/2026,7000,Materiaalkosten,BOUW-03,Installtech BV,-17235.00
+EXJ00047,05/04/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,84038.00
+EXJ00048,05/05/2026,1600,Crediteuren,BOUW-01,Wonen Centraal,-58476.00
+EXJ00049,05/06/2026,7000,Materiaalkosten,BOUW-02,Installtech BV,-20158.00
+EXJ00050,05/10/2026,1600,Crediteuren,BOUW-01,Strukton,-29744.00
+EXJ00051,05/11/2026,7100,Onderaanneming,BOUW-02,Installtech BV,-44638.00
+EXJ00052,05/12/2026,1300,Debiteuren,BOUW-02,Opdrachtgever BOUW-02,88554.00
+EXJ00053,05/12/2026,1600,Crediteuren,BOUW-01,Saint-Gobain,-13012.00
+EXJ00054,05/13/2026,1300,Debiteuren,BOUW-03,Opdrachtgever BOUW-03,116763.00
+EXJ00055,05/13/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,123168.00
+EXJ00056,05/16/2026,7100,Onderaanneming,BOUW-01,Klaassen Staal,-39048.00
+EXJ00057,05/19/2026,1300,Debiteuren,BOUW-03,Opdrachtgever BOUW-03,99433.00
+EXJ00058,05/19/2026,7050,Materiaal - duurzaam (nieuw),BOUW-01,EcoBouw Supplies,-6051.00
+EXJ00059,05/20/2026,7000,Materiaalkosten,BOUW-01,Installtech BV,-21274.00
+EXJ00060,05/21/2026,7000,Materiaalkosten,BOUW-02,Installtech BV,-41855.00
+EXJ00061,05/22/2026,7000,Materiaalkosten,BOUW-02,Wonen Centraal,-35405.00
+EXJ00062,05/22/2026,4300,Algemene kosten,BOUW-02,Provincie Utrecht,-29471.00
+EXJ00063,05/23/2026,8000,Projectopbrengsten,BOUW-02,Opdrachtgever BOUW-02,117484.00
+EXJ00064,05/23/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,45097.00
+EXJ00065,05/24/2026,7000,Materiaalkosten,BOUW-02,Strukton,-37851.00
+EXJ00066,05/25/2026,4300,Algemene kosten,BOUW-01,Gemeente Utrecht,-15454.00
+EXJ00067,05/27/2026,4300,Algemene kosten,BOUW-02,Provincie Utrecht,-13242.00
+EXJ00068,05/27/2026,4300,Algemene kosten,BOUW-02,Bouwmaat NL,-12931.00
+EXJ00069,05/29/2026,8000,Projectopbrengsten,BOUW-03,Opdrachtgever BOUW-03,99152.00
+EXJ00070,05/29/2026,7100,Onderaanneming,BOUW-03,Gemeente Utrecht,-8197.00
+EXJ00071,05/29/2026,7050,Materiaal - duurzaam (nieuw),BOUW-01,EcoBouw Supplies,-17650.00
+EXJ00072,05/30/2026,7100,Onderaanneming,BOUW-02,Wonen Centraal,-8456.00
+EXJ00073,06/03/2026,1300,Debiteuren,BOUW-01,Opdrachtgever BOUW-01,108650.00
+EXJ00074,06/04/2026,7000,Materiaalkosten,BOUW-01,CORRECTIE boeking,4106.00
+EXJ00075,06/05/2026,7000,Materiaalkosten,BOUW-03,BAM Infra,-26269.00

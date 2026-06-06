@@ -1,0 +1,7 @@
+# Dakdekkersbedrijf Peter Ummels — brand theme (from dakdekkersbedrijf-ummels.nl)
+[theme]
+primaryColor = "#ED1C24"             # Ummels red
+backgroundColor = "#F4F6F9"          # light slate
+secondaryBackgroundColor = "#FFFFFF" # cards / sidebar surfaces
+textColor = "#0F2540"                # deep navy ink
+font = "sans serif"

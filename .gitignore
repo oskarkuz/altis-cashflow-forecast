@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Streamlit / logs
+*.log
+.streamlit/secrets.toml
+
+# Local machine settings (keep .claude/launch.json tracked)
+.claude/settings.local.json
+
+# Runtime controller decisions (keep the repo's "unmapped" demo state)
+data/raw/gl_mapping_overrides.csv
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

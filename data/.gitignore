@@ -1,0 +1,7 @@
+*
+raw/*
+
+!actual_data/
+!actual_data/**
+!.gitignore
+!.gitkeep

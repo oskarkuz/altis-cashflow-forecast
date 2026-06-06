@@ -1,0 +1,4 @@
+# Track the directory, ignore all local data files
+*
+!.gitignore
+!.gitkeep

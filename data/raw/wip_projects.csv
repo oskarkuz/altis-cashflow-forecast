@@ -1,0 +1,13 @@
+project_id,project_name,opco,contract_value,pct_complete,weather_sensitive,crew_size,planned_end_week,location
+BOUW-01,Nieuwbouw Kantoor Lombok,Altis Bouw BV,3200000.00,0.45,Y,18,12,Utrecht
+BOUW-02,Renovatie Stadskantoor,Altis Bouw BV,1450000.00,0.60,N,10,11,Utrecht
+BOUW-03,Woningen Leidsche Rijn,Altis Bouw BV,2100000.00,0.25,Y,14,13,Utrecht
+INFRA-01,Herinrichting N201,Altis Infra BV,2750000.00,0.40,Y,16,12,Utrecht
+INFRA-02,Rioolvervanging Centrum,Altis Infra BV,1180000.00,0.55,Y,12,10,Utrecht
+INFRA-03,Fietsbrug Merwedekanaal,Altis Infra BV,980000.00,0.30,Y,10,13,Utrecht
+INST-01,Klimaatinstallatie Hof,Altis Installatie BV,720000.00,0.50,N,8,9,Utrecht
+INST-02,Elektra Zorgcomplex,Altis Installatie BV,640000.00,0.35,N,7,11,Utrecht
+INST-03,Data/CV Bedrijfshal,Altis Installatie BV,410000.00,0.65,N,5,8,Utrecht
+VAST-01,Gebiedsontw. Kade-Oost,Altis Vastgoed BV,1900000.00,0.20,Y,9,13,Utrecht
+VAST-02,Transformatie Pakhuis,Altis Vastgoed BV,760000.00,0.45,N,6,12,Utrecht
+VAST-03,Parkeergarage P+R,Altis Vastgoed BV,1240000.00,0.30,Y,8,13,Utrecht

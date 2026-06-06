@@ -1,0 +1,13 @@
+balance_id,opco,source_system,as_of_date,account_type,amount
+OB0001,Altis Bouw BV,exact,2026-06-06,cash,700000.00
+OB0002,Altis Bouw BV,exact,2026-06-06,AR,396417.00
+OB0003,Altis Bouw BV,exact,2026-06-06,AP,-234845.00
+OB0004,Altis Infra BV,gilde,2026-06-06,cash,380000.00
+OB0005,Altis Infra BV,gilde,2026-06-06,AR,550115.00
+OB0006,Altis Infra BV,gilde,2026-06-06,AP,-390965.00
+OB0007,Altis Installatie BV,yuki,2026-06-06,cash,320000.00
+OB0008,Altis Installatie BV,yuki,2026-06-06,AR,491720.00
+OB0009,Altis Installatie BV,yuki,2026-06-06,AP,-234065.00
+OB0010,Altis Vastgoed BV,snelstart,2026-06-06,cash,200000.00
+OB0011,Altis Vastgoed BV,snelstart,2026-06-06,AR,535285.00
+OB0012,Altis Vastgoed BV,snelstart,2026-06-06,AP,-385702.00

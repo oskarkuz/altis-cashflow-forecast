@@ -1,0 +1,24 @@
+[project]
+name = "altis-cashflow-forecast"
+version = "0.1.0"
+description = "Weather-aware 13-week revenue forecast for Dakdekkersbedrijf Peter Ummels"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "streamlit>=1.40",
+    "altair>=5.0",
+    "openpyxl>=3.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
