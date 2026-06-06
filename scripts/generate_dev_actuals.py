@@ -1,12 +1,12 @@
 """
-generate_dev_actuals.py — DEV-ONLY synthetic stand-in for the real Exact
-FinTransactions exports of Dakdekkersbedrijf Peter Ummels.
+generate_dev_actuals.py — DEV-ONLY synthetic stand-in for the Altis portfolio's
+Exact-style FinTransactions exports.
 
-The real exports are confidential and gitignored; this produces format-identical
-.xlsx files (one per revenue GL account) so the app runs end-to-end on any
-machine. Revenue follows a realistic ROOFING seasonality — low in winter
-(frost/short days), peak spring→autumn — so the seasonal + weather model has
-something real to chew on. Deterministic (seed 42). Writes to data/actual_data/.
+The real exports are confidential / not on this machine and are gitignored. This
+produces format-identical .xlsx files PER PORTFOLIO COMPANY (config.PORTFOLIO),
+each in data/actual_data/<id>/, with realistic ROOFING seasonality scaled per
+company. Ummels (Brunssum) is the anchor; the others are clearly demo financials
+(but each has its own REAL weather by location). Deterministic per-company seed.
 
 Run:  python scripts/generate_dev_actuals.py
 """
@@ -14,40 +14,41 @@ from __future__ import annotations
 
 import datetime as dt
 import os
+import sys
 
 import numpy as np
 from openpyxl import Workbook
 
-SEED = 42
-OUT = os.path.join(os.path.dirname(__file__), "..", "data", "actual_data")
-rng = np.random.default_rng(SEED)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src import config  # noqa: E402
 
-# account -> (header label, peak weekly NET €, vat note)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT = os.path.join(ROOT, "data", "actual_data")
+TODAY = config.TODAY
+DAGBOEK = "VRK"
+
+# account -> (header label, peak weekly NET € at scale 1.0)
 ACCOUNTS = {
-    8000: ("8000 - Omzet hoog 21%",            55_000, "hoog"),
-    8002: ("8002 - Omzet laag 9%",              8_000, "laag"),
-    8005: ("8005 - Omzet heffing verlegd",     12_000, "verlegd"),
-    8004: ("8004 - Omzet 0% / niet belast",     2_500, "nul"),
+    8000: ("8000 - Omzet hoog 21%", 55_000),
+    8002: ("8002 - Omzet laag 9%", 8_000),
+    8005: ("8005 - Omzet heffing verlegd", 12_000),
+    8004: ("8004 - Omzet 0% / niet belast", 2_500),
 }
 YEAR_FACTOR = {2023: 1.00, 2024: 1.08, 2025: 1.19, 2026: 1.27}
-TODAY = dt.date(2026, 6, 6)
-DAGBOEK = "VRK"   # verkoopboek (sales journal)
 
 
 def seasonal_weight(iso_week: int) -> float:
-    """Roofing season curve: winter trough, spring/summer/autumn peak."""
-    # smooth bump centred on ~week 28 (mid-July), low in deep winter
     base = 0.45 + 0.85 * np.exp(-((iso_week - 28) ** 2) / (2 * 13.0 ** 2))
-    if iso_week <= 6 or iso_week >= 50:      # deep winter extra dip (frost)
+    if iso_week <= 6 or iso_week >= 50:
         base *= 0.7
     return float(base)
 
 
-def make_workbook(path, account_header, rows):
+def make_workbook(path, company_id, account_header, rows):
     wb = Workbook()
     ws = wb.active
-    ws.append(["Administratie: 82604 - Dakdekkersbedrijf Peter Ummels"])
-    ws.append([f"Datum: {TODAY.strftime('%-d %B %Y') if os.name!='nt' else TODAY.isoformat()} door Dev"])
+    ws.append([f"Administratie: {company_id} - Altis portfolio (dev)"])
+    ws.append([f"Datum: {TODAY.isoformat()} door Dev"])
     ws.append([" Kaart|Grootboekrekening"])
     ws.append([None])
     ws.append(["Criteria"])
@@ -63,36 +64,45 @@ def make_workbook(path, account_header, rows):
     wb.save(path)
 
 
-def main():
-    os.makedirs(OUT, exist_ok=True)
-    doc = 200000
-    total_net = 0.0
-    for account, (header, peak, _note) in ACCOUNTS.items():
+def gen_company(company):
+    rng = np.random.default_rng(company["seed"])
+    scale = company["scale"]
+    folder = os.path.join(OUT, company["id"])
+    os.makedirs(folder, exist_ok=True)
+    doc, total = 200000, 0.0
+    for account, (header, peak) in ACCOUNTS.items():
         rows = []
         for year, yfac in YEAR_FACTOR.items():
             last_week = 52 if year < 2026 else TODAY.isocalendar().week - 1
             for wkno in range(1, last_week + 1):
                 try:
-                    invoice_day = dt.date.fromisocalendar(year, wkno, 4)  # Thursday
+                    day = dt.date.fromisocalendar(year, wkno, 4)
                 except ValueError:
                     continue
-                if invoice_day > TODAY:
+                if day > TODAY:
                     continue
-                amt = peak * seasonal_weight(wkno) * yfac * float(rng.normal(1.0, 0.12))
+                amt = peak * scale * seasonal_weight(wkno) * yfac * float(rng.normal(1.0, 0.12))
                 amt = max(0.0, round(amt, 2))
                 if amt < 50:
                     continue
-                # 1–2 invoices per week
-                n_inv = 1 if rng.random() < 0.6 else 2
-                splits = rng.dirichlet(np.ones(n_inv)) * amt
+                splits = rng.dirichlet(np.ones(1 if rng.random() < 0.6 else 2)) * amt
                 for part in splits:
                     doc += 1
-                    rows.append((invoice_day, 0.0, round(float(part), 2), str(doc)))
-                    total_net += float(part)
-        path = os.path.join(OUT, f"82604-{account}.xlsx")
-        make_workbook(path, header, rows)
-        print(f"  82604-{account}.xlsx  {len(rows):>4} rows  net €{sum(r[2] for r in rows):>12,.0f}")
-    print(f"Generated {len(ACCOUNTS)} files in {os.path.abspath(OUT)} | total net €{total_net:,.0f}")
+                    rows.append((day, 0.0, round(float(part), 2), str(doc)))
+                    total += float(part)
+        prefix = "82604" if company["id"] == "ummels" else company["id"]
+        make_workbook(os.path.join(folder, f"{prefix}-{account}.xlsx"),
+                      company["id"], header, rows)
+    return total
+
+
+def main():
+    os.makedirs(OUT, exist_ok=True)
+    for c in config.PORTFOLIO:
+        total = gen_company(c)
+        tag = "REAL-format" if c["real"] else "demo"
+        print(f"  {c['id']:<11} {c['city']:<11} [{tag}]  net €{total:>12,.0f}")
+    print(f"Generated {len(config.PORTFOLIO)} companies in {os.path.abspath(OUT)}")
 
 
 if __name__ == "__main__":

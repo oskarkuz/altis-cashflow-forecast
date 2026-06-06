@@ -72,15 +72,19 @@ def _iso_cols(df: pd.DataFrame) -> pd.DataFrame:
 # --------------------------------------------------------------------------- #
 # historical archive
 # --------------------------------------------------------------------------- #
-def load_history(refresh: bool = False) -> pd.DataFrame:
-    loc = config.WEATHER_LOCATION
+def _slug(loc: dict) -> str:
+    return str(loc.get("name", "loc")).lower().replace(" ", "_")
+
+
+def load_history(refresh: bool = False, loc: dict | None = None) -> pd.DataFrame:
+    loc = loc or config.WEATHER_LOCATION
     r = config.WEATHER_RULE
     url = _url(config.OPENMETEO_ARCHIVE,
               latitude=loc["latitude"], longitude=loc["longitude"],
               start_date=config.WEATHER_HISTORY_START,
               end_date=config.TODAY.isoformat(),
               daily=",".join(config.WEATHER_DAILY_VARS), timezone=config.WEATHER_TZ)
-    data = _curl_json(url, "historical_brunssum.json", refresh)
+    data = _curl_json(url, f"historical_{_slug(loc)}.json", refresh)
     if not data:
         return pd.DataFrame(columns=["date", "precip", "tmax", "tmin", "snow",
                                      "wind", "workable_frac", "iso_year", "iso_week"])
@@ -99,14 +103,14 @@ def load_history(refresh: bool = False) -> pd.DataFrame:
 # --------------------------------------------------------------------------- #
 # SEAS5 seasonal forecast (ensemble -> daily workable PROBABILITY)
 # --------------------------------------------------------------------------- #
-def load_seas5(refresh: bool = False) -> pd.DataFrame:
-    loc = config.WEATHER_LOCATION
+def load_seas5(refresh: bool = False, loc: dict | None = None) -> pd.DataFrame:
+    loc = loc or config.WEATHER_LOCATION
     r = config.WEATHER_RULE
     url = _url(config.OPENMETEO_SEASONAL,
               latitude=loc["latitude"], longitude=loc["longitude"],
               daily="precipitation_sum,temperature_2m_max,temperature_2m_min",
               timezone=config.WEATHER_TZ)
-    data = _curl_json(url, "seas5_brunssum.json", refresh)
+    data = _curl_json(url, f"seas5_{_slug(loc)}.json", refresh)
     if not data:
         return pd.DataFrame(columns=["date", "precip", "tmax", "tmin",
                                      "workable_frac", "spread_precip",
@@ -154,7 +158,7 @@ def climatology(history: pd.DataFrame) -> dict[int, float]:
     return h.groupby("iso_week")["workable_frac"].mean().to_dict()
 
 
-def weekly_factors(start_date=None, n_weeks=None, payment_terms_days=None):
+def weekly_factors(start_date=None, n_weeks=None, payment_terms_days=None, loc=None):
     """Per forecast cash-week weather factor + a forward daily frame for display.
     factor = clamp(forward_workable_fraction / typical_workable_fraction)."""
     start_date = start_date or config.FORECAST_START
@@ -163,8 +167,8 @@ def weekly_factors(start_date=None, n_weeks=None, payment_terms_days=None):
         else payment_terms_days
     clamp = config.WEATHER_FACTOR_CLAMP
 
-    hist = load_history()
-    seas = load_seas5()
+    hist = load_history(loc=loc)
+    seas = load_seas5(loc=loc)
     clim = climatology(hist)
     last_hist = max(hist["date"]) if not hist.empty else dt.date(2000, 1, 1)
     hist_by = {r.date: r.workable_frac for r in hist.itertuples()} if not hist.empty else {}

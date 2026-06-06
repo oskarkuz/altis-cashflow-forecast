@@ -1,13 +1,17 @@
-# Dakdekkersbedrijf Peter Ummels — Weather-Aware 13-Week Revenue Forecast
+# Altis Roofing Portfolio — Weather-Aware 13-Week Revenue Forecast
 
-An honest, single-company dashboard that ingests **real** Exact FinTransactions
-exports for **Dakdekkersbedrijf Peter Ummels** (a roofing firm in Brunssum),
-reconciles each file to its `Eindsaldo`, and builds a **seasonal 13-week revenue
-cash-flow forecast** from historical ISO-week patterns — then **nudges it with
-real weather** (Open-Meteo historical climatology + the ECMWF **SEAS5** seasonal
-forecast), because roofing revenue depends on workable (dry, frost-free) days.
-Four role views (Owner / Operations / PE Board / Bookkeeper) in the company's
-brand palette; every figure traces back to the source Excel cell behind it.
+A PE-portfolio dashboard over **four weather-exposed roofing companies** (Brunssum,
+Andijk, Heeze, Winschoten), each on its own accounting platform and at its own
+location. It ingests Exact-style FinTransactions exports, reconciles each file to
+its `Eindsaldo`, and builds a **seasonal 13-week revenue cash-flow forecast** from
+historical ISO-week patterns — then **nudges each company's forecast with that
+company's own real weather** (Open-Meteo historical climatology + the ECMWF
+**SEAS5** seasonal forecast), because roofing revenue depends on workable (dry,
+frost-free) days. **Dakdekkersbedrijf Peter Ummels** (Brunssum) ships with real
+Exact data; the other three use clearly-labelled **demo financials + real
+weather** until their exports are loaded. Four role views (Owner / Operations &
+Weather / PE Board / Bookkeeper) in the Ummels brand palette; every figure traces
+back to the source Excel cell behind it.
 
 ## One-paragraph architecture
 
@@ -37,8 +41,9 @@ Legacy synthetic modules (`covenant.py`, `drivers.py`, `calibrate.py`,
 ```bash
 python -m pip install -r requirements.txt
 
-# No real Exact data on hand? Generate a format-identical dev stand-in with
-# realistic roofing seasonality (writes to data/actual_data/, gitignored):
+# Generate format-identical dev data for all 4 portfolio companies with
+# realistic roofing seasonality (writes to data/actual_data/<id>/, gitignored).
+# Drop a company's real exports into data/actual_data/<id>/ to use real data.
 python scripts/generate_dev_actuals.py
 
 python -m streamlit run app/streamlit_app.py

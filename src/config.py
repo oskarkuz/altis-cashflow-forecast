@@ -150,3 +150,33 @@ OPENMETEO_ARCHIVE = "https://archive-api.open-meteo.com/v1/archive"
 OPENMETEO_SEASONAL = "https://seasonal-api.open-meteo.com/v1/seasonal"
 WEATHER_DAILY_VARS = ["precipitation_sum", "temperature_2m_max",
                       "temperature_2m_min", "snowfall_sum", "wind_speed_10m_max"]
+
+# --------------------------------------------------------------------------- #
+# PORTFOLIO — the Altis PE portfolio of weather-exposed roofing companies.
+# Each company sits at its own location (its own real Open-Meteo weather) and
+# its own accounting platform. Only Ummels (Brunssum) ships with real Exact
+# data; the other three use clearly-labelled demo financials + REAL weather
+# until their exports are dropped into data/actual_data/<id>/.
+# --------------------------------------------------------------------------- #
+PORTFOLIO = [
+    {"id": "ummels", "name": "Dakdekkersbedrijf Peter Ummels", "city": "Brunssum",
+     "province": "Limburg", "lat": 50.9489, "lon": 5.9725,
+     "system": "Exact Online (82604)", "real": True, "scale": 1.00, "seed": 42},
+    {"id": "andijk", "name": "Altis Portfolio — Andijk", "city": "Andijk",
+     "province": "Noord-Holland", "lat": 52.7453, "lon": 5.2200,
+     "system": "Altis Dataset 1 (monthly)", "real": False, "scale": 0.55, "seed": 11},
+    {"id": "heeze", "name": "Altis Portfolio — Heeze", "city": "Heeze",
+     "province": "Noord-Brabant", "lat": 51.3812, "lon": 5.5730,
+     "system": "SnelStart", "real": False, "scale": 0.80, "seed": 22},
+    {"id": "winschoten", "name": "Altis Portfolio — Winschoten", "city": "Winschoten",
+     "province": "Groningen", "lat": 53.1427, "lon": 7.0356,
+     "system": "Gilde", "real": False, "scale": 0.70, "seed": 33},
+]
+
+
+def company_glob(company_id: str) -> str:
+    return os.path.join(ROOT, "data", "actual_data", company_id, "*.xlsx")
+
+
+def get_company(company_id: str) -> dict:
+    return next((c for c in PORTFOLIO if c["id"] == company_id), PORTFOLIO[0])

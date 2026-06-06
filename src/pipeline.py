@@ -41,14 +41,17 @@ def _kpis(actuals, forecast_events):
     }
 
 
-def run(glob_pattern=None):
+def run(company_id=None, glob_pattern=None):
+    company = config.get_company(company_id) if company_id else config.PORTFOLIO[0]
+    loc = {"name": company["city"], "latitude": company["lat"], "longitude": company["lon"]}
+    glob_pattern = glob_pattern or config.company_glob(company["id"])
     actuals, recon = excel_ingest.load_revenue_actuals(glob_pattern)
 
-    # Weather (real SEAS5 + historical climatology), cached + graceful.
+    # Weather (real SEAS5 + historical climatology) for THIS company's location.
     weather_factors, weather_forward, weather_summary = {}, pd.DataFrame(), {}
     if config.WEATHER_ADJUST:
         try:
-            weather_factors, weather_forward = wf.weekly_factors()
+            weather_factors, weather_forward = wf.weekly_factors(loc=loc)
             weather_summary = wf.summary(weather_factors)
         except Exception as e:  # never let weather break the forecast
             print("[pipeline] weather disabled:", e)
@@ -63,8 +66,9 @@ def run(glob_pattern=None):
     pre = round(float(basis["amount_pre_weather"].sum()), 2) if not basis.empty else 0.0
     post = round(float(events["amount"].sum()), 2) if not events.empty else 0.0
     return {
-        "company": config.COMPANY,
-        "location": config.WEATHER_LOCATION["name"],
+        "company": company["name"],
+        "company_meta": company,
+        "location": company["city"],
         "revenue_actuals": actuals,
         "recon_report": recon_report,
         "forecast_events": events,
@@ -77,3 +81,8 @@ def run(glob_pattern=None):
         "weather_pre_total": pre,
         "kpis": _kpis(actuals, events),
     }
+
+
+def run_portfolio():
+    """Run every portfolio company -> {company_id: bundle}."""
+    return {c["id"]: run(c["id"]) for c in config.PORTFOLIO}

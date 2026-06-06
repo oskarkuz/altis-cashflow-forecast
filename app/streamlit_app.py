@@ -63,18 +63,14 @@ def euro(x):
     return f"€{x:,.0f}"
 
 
-@st.cache_data(show_spinner="Reading Exact exports, weather & building the forecast…")
-def load_bundle():
-    return pipeline.run()
+@st.cache_data(show_spinner="Reading exports, weather & building the forecast…")
+def load_company(cid):
+    return pipeline.run(cid)
 
 
-bundle = load_bundle()
-actuals = bundle["revenue_actuals"]
-events = bundle["forecast_events"]
-basis = bundle["seasonal_basis"]
-rep = bundle["recon_report"]
-wfac = bundle.get("weather_factors", {})
-wsum = bundle.get("weather_summary", {})
+def load_portfolio():
+    return {c["id"]: load_company(c["id"]) for c in config.PORTFOLIO}
+
 
 ROLES = {
     "Owner": "Owner / Directie",
@@ -82,29 +78,48 @@ ROLES = {
     "PE Board": "PE Board",
     "Bookkeeper": "Bookkeeper",
 }
+COMPANIES = {c["id"]: c for c in config.PORTFOLIO}
 
 # --------------------------------------------------------------------------- #
-# Sidebar — role switcher + trust signals
+# Sidebar — role + company switchers + trust signals
 # --------------------------------------------------------------------------- #
-st.sidebar.markdown(f"### 🏠 {bundle['company'].split(' ',1)[-1] if False else 'Peter Ummels'}")
-st.sidebar.caption(f"{bundle['company']} · {bundle['location']}")
+st.sidebar.markdown("### 🏠 Altis Portfolio")
+st.sidebar.caption("4 weather-exposed roofing companies")
 role = st.sidebar.radio("**Who are you?**", list(ROLES), index=0,
                         format_func=lambda r: ROLES[r])
+
+if role == "PE Board":
+    st.sidebar.caption("📊 Portfolio view — all companies")
+    company_id = config.PORTFOLIO[0]["id"]
+else:
+    company_id = st.sidebar.selectbox(
+        "**Company**", list(COMPANIES),
+        format_func=lambda i: f"{COMPANIES[i]['city']} · {COMPANIES[i]['name']}")
+
+bundle = load_company(company_id)
+actuals = bundle["revenue_actuals"]
+events = bundle["forecast_events"]
+basis = bundle["seasonal_basis"]
+rep = bundle["recon_report"]
+wfac = bundle.get("weather_factors", {})
+wsum = bundle.get("weather_summary", {})
+meta = bundle["company_meta"]
 
 st.sidebar.divider()
 flag = "✅" if rep["all_pass"] else "⚠️"
 st.sidebar.markdown("**Data trust**")
-st.sidebar.write(f"- {flag} {rep['n_files']} Exact files {'all reconcile' if rep['all_pass'] else 'SOME FAIL'}")
+st.sidebar.write(f"- {'🟢 Real Exact data' if meta['real'] else '🟡 Demo financials · real weather'}")
+st.sidebar.write(f"- {flag} {rep['n_files']} files {'all reconcile' if rep['all_pass'] else 'SOME FAIL'}")
 st.sidebar.write(f"- Σ revenue reconciled: **{euro(rep['total_reconciled'])}**")
-if wsum:
-    st.sidebar.write(f"- 🌦️ Weather: SEAS5 + {actuals['iso_year'].min()}–{actuals['iso_year'].max()} history")
-st.sidebar.caption("Real Exact FinTransactions + real Open-Meteo weather. "
-                   "Every figure traces to a source Excel cell.")
+st.sidebar.caption("Forecast from real Open-Meteo weather (SEAS5 + history). Every "
+                   "figure traces to a source Excel cell.")
 
 # brand header
+hero_title = "Altis Portfolio" if role == "PE Board" else bundle["company"]
+hero_sub = ("PE portfolio · 4 weather-exposed roofing companies" if role == "PE Board"
+            else f"13-week revenue forecast · {bundle['location']} · {meta['system']}")
 st.markdown(f"""<div class="ummels-hero">
-  <div><h1>Dakdekkersbedrijf Peter Ummels</h1>
-  <div class="sub">13-week revenue cash-flow forecast · {bundle['location']} · weather-aware</div></div>
+  <div><h1>{hero_title}</h1><div class="sub">{hero_sub}</div></div>
   <div class="ummels-chip">{ROLES[role].upper()}</div>
 </div>""", unsafe_allow_html=True)
 
@@ -303,49 +318,88 @@ def operations_view():
 # PE BOARD VIEW
 # --------------------------------------------------------------------------- #
 def pe_board_view():
-    k = bundle["kpis"]
-    a = actuals
-    by_year = a.groupby("iso_year")["cash_amount"].sum()
-    full_years = [y for y in by_year.index if y < a["iso_year"].max()]
-    run_rate = by_year[full_years].mean() if full_years else by_year.mean()
+    port = load_portfolio()
+    COMP_COLORS = {"ummels": RED, "andijk": BLUE, "heeze": NAVY, "winschoten": SKY}
+
+    rows = []
+    for cid, b in port.items():
+        a = b["revenue_actuals"]
+        by_year = a.groupby("iso_year")["cash_amount"].sum() if len(a) else pd.Series(dtype=float)
+        full = [y for y in by_year.index if y < a["iso_year"].max()] if len(a) else []
+        run_rate = by_year[full].mean() if full else (by_year.mean() if len(by_year) else 0)
+        ws = b.get("weather_summary", {})
+        rows.append({
+            "id": cid, "Company": b["company"], "City": b["location"],
+            "System": b["company_meta"]["system"],
+            "Data": "Real" if b["company_meta"]["real"] else "Demo",
+            "Run-rate": run_rate, "Forecast 13wk": b["kpis"]["forecast_total"],
+            "YoY %": b["kpis"]["yoy_pct"],
+            "Weather %": (ws.get("mean_factor", 1) - 1) * 100,
+            "Lost days": ws.get("expected_lost_days", 0)})
+    pf = pd.DataFrame(rows)
 
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Annual run-rate (revenue)", euro(run_rate))
-    c2.metric("Forecast · next 13 weeks", euro(k["forecast_total"]))
-    c3.metric("Growth vs last year", f"{k['yoy_pct']:+.1f}%")
-    c4.metric("Weather sensitivity", f"{wsum.get('expected_lost_days', 0):.0f} lost days",
-              help="Roofing revenue at risk from rain/frost over the window")
+    c1.metric("Portfolio companies", len(pf))
+    c2.metric("Portfolio run-rate", euro(pf["Run-rate"].sum()))
+    c3.metric("Forecast · next 13 weeks", euro(pf["Forecast 13wk"].sum()))
+    c4.metric("Weather-exposed lost days", f"{pf['Lost days'].sum():.0f}",
+              help="Sum of expected rain/frost lost roofing days across the portfolio")
 
-    st.markdown('<span class="note">Portfolio company 2 · Dakdekkersbedrijf Peter Ummels · '
-                'Exact Online (ID 82604). Revenue-only view; costs/margin not in source data.</span>',
-                unsafe_allow_html=True)
-
-    with st.container(border=True):
-        st.subheader("Revenue trajectory")
-        yr = by_year.reset_index().rename(columns={"cash_amount": "revenue"})
-        yr["kind"] = yr["iso_year"].map(lambda y: "Year-to-date" if y == a["iso_year"].max()
-                                        else "Full year")
-        bar = alt.Chart(yr).mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(
-            x=alt.X("iso_year:O", title="Year"),
-            y=alt.Y("revenue:Q", title="Revenue (€)"),
-            color=alt.Color("kind:N", scale=alt.Scale(
-                domain=["Full year", "Year-to-date"], range=[BLUE, SKY]),
-                legend=alt.Legend(title=None)),
-            tooltip=["iso_year:O", alt.Tooltip("revenue:Q", format=",.0f"), "kind:N"])
-        st.altair_chart(bar.properties(height=260), use_container_width=True)
+    st.markdown('<span class="note">Altis PE portfolio · 4 roofing companies, each on its own '
+                'accounting platform and at its own location (its own real weather). '
+                'Ummels ships with real Exact data; the others use labelled demo financials '
+                '+ real weather until their exports are loaded.</span>', unsafe_allow_html=True)
 
     with st.container(border=True):
-        st.subheader("Seasonality — weekly revenue by year")
-        wk = a.groupby(["iso_year", "iso_week"], as_index=False)["cash_amount"].sum()
-        line = alt.Chart(wk).mark_line(strokeWidth=2).encode(
-            x=alt.X("iso_week:Q", title="Week of year"),
-            y=alt.Y("cash_amount:Q", title="Revenue (€)"),
-            color=alt.Color("iso_year:N", title="Year",
-                            scale=alt.Scale(scheme="blues")),
-            tooltip=["iso_year:N", "iso_week:Q", alt.Tooltip("cash_amount:Q", format=",.0f")])
-        st.altair_chart(line.properties(height=260), use_container_width=True)
-        st.markdown('<span class="note">Classic roofing seasonality: a summer peak, a winter '
-                    'trough. The 13-week forecast sits on this curve, nudged by the weather outlook.</span>',
+        st.subheader("Companies at a glance")
+        st.dataframe(pf.drop(columns=["id"]).style.format({
+            "Run-rate": "{:,.0f}", "Forecast 13wk": "{:,.0f}",
+            "YoY %": "{:+.1f}", "Weather %": "{:+.1f}", "Lost days": "{:.0f}"}),
+            use_container_width=True, hide_index=True)
+
+    c5, c6 = st.columns(2)
+    with c5:
+        with st.container(border=True):
+            st.subheader("13-week forecast by company")
+            bar = alt.Chart(pf).mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(
+                x=alt.X("City:N", title=None, sort="-y"),
+                y=alt.Y("Forecast 13wk:Q", title="Forecast (€)"),
+                color=alt.Color("id:N", scale=alt.Scale(domain=list(COMP_COLORS),
+                                range=list(COMP_COLORS.values())), legend=None),
+                tooltip=["Company:N", alt.Tooltip("Forecast 13wk:Q", format=",.0f")])
+            st.altair_chart(bar.properties(height=280), use_container_width=True)
+    with c6:
+        with st.container(border=True):
+            st.subheader("Weather effect by company")
+            wb = alt.Chart(pf).mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(
+                x=alt.X("City:N", title=None),
+                y=alt.Y("Weather %:Q", title="Weather effect on revenue (%)"),
+                color=alt.condition("datum['Weather %'] >= 0", alt.value("#1a9850"),
+                                    alt.value(RED)),
+                tooltip=["Company:N", alt.Tooltip("Weather %:Q", format="+.1f"),
+                         alt.Tooltip("Lost days:Q", format=".0f")])
+            st.altair_chart(wb.properties(height=280), use_container_width=True)
+
+    with st.container(border=True):
+        st.subheader("Portfolio revenue forecast — stacked by company")
+        parts = []
+        for cid, b in port.items():
+            w = b["weekly_forecast"].sum(axis=1).reset_index()
+            w.columns = ["week", "amount"]
+            w["company"] = COMPANIES[cid]["city"]
+            w["id"] = cid
+            parts.append(w)
+        stk = pd.concat(parts)
+        ch = alt.Chart(stk).mark_bar().encode(
+            x=alt.X("week:O", title="Forecast week"),
+            y=alt.Y("amount:Q", title="Revenue (€)", stack="zero"),
+            color=alt.Color("id:N", scale=alt.Scale(domain=list(COMP_COLORS),
+                            range=list(COMP_COLORS.values())),
+                            legend=alt.Legend(title="Company")),
+            tooltip=["company:N", "week:O", alt.Tooltip("amount:Q", format=",.0f")])
+        st.altair_chart(ch.properties(height=300), use_container_width=True)
+        st.markdown('<span class="note">Switch to any single company via the other roles '
+                    '(Owner / Operations / Bookkeeper) in the sidebar.</span>',
                     unsafe_allow_html=True)
 
 
