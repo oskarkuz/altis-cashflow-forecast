@@ -99,3 +99,24 @@ COVENANT = {
     "ltm_ebitda": 3_600_000,
     "leverage_max": 3.00,
 }
+
+# --------------------------------------------------------------------------- #
+# REAL DATA — Dakdekkersbedrijf Peter Ummels (Exact FinTransactions exports)
+# Recursive glob is robust to the timestamped folder name.
+# --------------------------------------------------------------------------- #
+ACTUAL_DATA_GLOB = os.path.join(ROOT, "data", "actual_data", "**", "82604-*.xlsx")
+COMPANY = "Dakdekkersbedrijf Peter Ummels"
+
+# Chart of accounts -> (vat_category, vat_rate, label). Unknown -> unmapped.
+GL_ACCOUNTS = {
+    8000: ("omzet_hoog",    0.21, "Omzet hoog (21%)"),
+    8001: ("omzet_verlegd", 0.00, "Omzet verlegd (reverse charge)"),
+    8002: ("omzet_laag",    0.09, "Omzet laag (9%)"),
+    8004: ("omzet_nul",     0.00, "Omzet 0% / niet bij u belast"),
+    8005: ("omzet_verlegd", 0.00, "Omzet heffing verlegd (reverse charge)"),
+}
+
+# Seasonal forecast knobs (all tunable by a controller, like the rest of config).
+PAYMENT_TERMS_DAYS = 30          # invoice -> cash shift; 0 = invoice-date literal
+SEASONAL_YEARS = [2023, 2024, 2025]   # prior years averaged for the seasonal base
+YOY_CLAMP = (0.5, 2.0)           # clamp band for the year-on-year growth factor
