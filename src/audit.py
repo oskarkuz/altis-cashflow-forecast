@@ -27,14 +27,21 @@ def drill_down(forecast_events, week=None, vat_category=None):
 
 
 def trace_seed_rows(event, actuals):
-    """Return the revenue_actuals rows that seeded one forecast event."""
-    ids = event["seed_event_ids"]
+    """Return the revenue_actuals rows that seeded one forecast event.
+
+    Returns an empty frame if the event carries no seed_event_ids.
+    """
+    ids = event.get("seed_event_ids", [])
     return actuals[actuals["event_id"].isin(ids)].copy()
 
 
 def read_excel_row(source_file, source_excel_row, glob_pattern=None):
-    """Open the originating .xlsx and return that row's labelled cell values."""
-    glob_pattern = glob_pattern or config.ACTUAL_DATA_GLOB
+    """Open the originating .xlsx and return that row's labelled cell values.
+
+    `row` is None when the file cannot be found; callers must handle that.
+    An out-of-range row index yields a row dict whose cells are all None.
+    """
+    glob_pattern = config.ACTUAL_DATA_GLOB if glob_pattern is None else glob_pattern
     path = next((p for p in glob.glob(glob_pattern, recursive=True)
                  if os.path.basename(p) == source_file), None)
     if path is None:
