@@ -1,109 +1,53 @@
-"""
-AUDITABILITY (worth 28%)
-Every cash_event carries source_system + source_table + source_row_id. This
-module turns that pointer back into the ORIGINAL raw CSV row, so any forecast
-figure can be traced all the way down to the file it came from.
+"""AUDITABILITY — trace any dashboard figure to its literal source Excel cell.
 
-drill_down()  -> the cash_events behind a (scenario, week, driver[, opco]) figure
-trace_to_raw() -> the single originating raw record for one cash_event
+drill_down()      -> the forecast_events behind a (week, vat_category) figure
+trace_seed_rows() -> the historical revenue_actuals rows that seeded a forecast event
+read_excel_row()  -> the literal cell values of one source .xlsx row
 """
 from __future__ import annotations
 
+import glob
 import os
 
-import pandas as pd
+from openpyxl import load_workbook
 
 from . import config
 
-# how to find the originating row in each raw accounting export
-_EXPORT_KEYS = {
-    "exact":     ("exact_export.csv",     ",", "JournalEntryID"),
-    "gilde":     ("gilde_export.csv",     ";", "Boekstuknr"),
-    "yuki":      ("yuki_export.csv",      ",", "EntryID"),
-    "snelstart": ("snelstart_export.csv", ";", "Regelnr"),
-}
+_FINTRANS_COLS = ["Nr.", "Per.", "Datum", "Bkst.nr.", "Dagboek", "Debet", "Credit"]
 
 
-def drill_down(cash_events: pd.DataFrame, scenario: str | None = None,
-               week: int | None = None, driver: str | None = None,
-               opco: str | None = None, project_id: str | None = None,
-               include_beyond: bool = False) -> pd.DataFrame:
-    """Filter cash_events to exactly the rows behind a dashboard figure.
-    This IS the audit report — a filter over the single table, not a separate one."""
-    df = cash_events
-    if scenario is not None:
-        df = df[df["scenario"] == scenario]
-    if not include_beyond:
-        df = df[~df["beyond_horizon"]]
+def drill_down(forecast_events, week=None, vat_category=None):
+    """Filter forecast_events to the rows behind a dashboard cell."""
+    df = forecast_events
     if week is not None:
         df = df[df["week"] == week]
-    if driver is not None:
-        df = df[df["driver"] == driver]
-    if opco is not None:
-        df = df[df["opco"] == opco]
-    if project_id is not None:
-        df = df[df["project_id"] == project_id]
+    if vat_category is not None:
+        df = df[df["vat_category"] == vat_category]
     return df.copy()
 
 
-def trace_to_raw(event: dict | pd.Series, raw_dir: str | None = None) -> dict:
-    """Return the ORIGINATING raw record for one cash_event.
-
-    milestones / opening_balances -> the raw forward-input CSV row
-    weather                       -> the rainy days that drove the lost-day idle cost
-    (accounting actuals)          -> the original posting in the system export
-    """
-    raw_dir = raw_dir or config.RAW
-    table = event["source_table"]
-    rid = str(event["source_row_id"])
-
-    if table == "milestones":
-        df = pd.read_csv(os.path.join(raw_dir, "milestones.csv"), dtype=str)
-        hit = df[df["milestone_id"] == rid]
-        return {"raw_file": "milestones.csv", "key": rid,
-                "row": hit.iloc[0].to_dict() if len(hit) else None}
-
-    if table == "opening_balances":
-        df = pd.read_csv(os.path.join(raw_dir, "opening_balances.csv"), dtype=str)
-        hit = df[df["balance_id"] == rid]
-        return {"raw_file": "opening_balances.csv", "key": rid,
-                "row": hit.iloc[0].to_dict() if len(hit) else None}
-
-    if table == "weather":
-        # rid like "WX-INFRA-01-W7" -> week 7; show the days >threshold that week
-        wk = int(rid.rsplit("W", 1)[-1])
-        wd = pd.read_csv(os.path.join(raw_dir, "weather_daily.csv"))
-        wd["week"] = (wd.index // 7) + 1
-        scale = config.SCENARIOS.get(event.get("scenario", "base"), {}).get("precip_scale", 1.0)
-        days = wd[wd["week"] == wk].copy()
-        days["precip_scaled"] = (days["precipitation_mm"] * scale).round(1)
-        lost = days[(days["precip_scaled"] > config.WEATHER["precip_threshold_mm"]) |
-                    (days["temp_min_c"] <= config.WEATHER["frost_temp_c"])]
-        return {"raw_file": "weather_daily.csv", "key": f"week {wk}",
-                "row": {"lost_days": lost[["date", "precipitation_mm", "precip_scaled",
-                                           "temp_min_c"]].to_dict("records")}}
-
-    # fallback: an actual accounting posting (used by the Opco MD actuals view)
-    sys = event.get("source_system", "")
-    if sys in _EXPORT_KEYS:
-        fname, sep, keycol = _EXPORT_KEYS[sys]
-        df = pd.read_csv(os.path.join(raw_dir, fname), sep=sep, dtype=str)
-        hit = df[df[keycol] == rid]
-        return {"raw_file": fname, "key": rid,
-                "row": hit.iloc[0].to_dict() if len(hit) else None}
-
-    return {"raw_file": "(unknown)", "key": rid, "row": None}
+def trace_seed_rows(event, actuals):
+    """Return the revenue_actuals rows that seeded one forecast event."""
+    ids = event["seed_event_ids"]
+    return actuals[actuals["event_id"].isin(ids)].copy()
 
 
-def trace_transaction(txn: dict | pd.Series, raw_dir: str | None = None) -> dict:
-    """Trace a reconciled `transactions` row back to its raw accounting export row."""
-    raw_dir = raw_dir or config.RAW
-    sys = txn["source_system"]
-    rid = str(txn["source_row_id"])
-    if sys in _EXPORT_KEYS:
-        fname, sep, keycol = _EXPORT_KEYS[sys]
-        df = pd.read_csv(os.path.join(raw_dir, fname), sep=sep, dtype=str)
-        hit = df[df[keycol] == rid]
-        return {"raw_file": fname, "key": rid,
-                "row": hit.iloc[0].to_dict() if len(hit) else None}
-    return {"raw_file": "(unknown)", "key": rid, "row": None}
+def read_excel_row(source_file, source_excel_row, glob_pattern=None):
+    """Open the originating .xlsx and return that row's labelled cell values."""
+    glob_pattern = glob_pattern or config.ACTUAL_DATA_GLOB
+    path = next((p for p in glob.glob(glob_pattern, recursive=True)
+                 if os.path.basename(p) == source_file), None)
+    if path is None:
+        return {"raw_file": source_file, "key": source_excel_row, "row": None}
+    wb = load_workbook(path, read_only=True, data_only=True)
+    try:
+        ws = wb[wb.sheetnames[0]]
+        rows = list(ws.iter_rows(values_only=True))
+    finally:
+        wb.close()
+    idx = source_excel_row - 1          # 1-based -> 0-based
+    cells = rows[idx] if 0 <= idx < len(rows) else ()
+    row = {}
+    for i, col in enumerate(_FINTRANS_COLS):
+        row[col] = cells[i] if i < len(cells) else None
+    return {"raw_file": source_file, "key": source_excel_row, "row": row}
