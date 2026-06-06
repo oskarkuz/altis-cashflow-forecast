@@ -39,14 +39,13 @@ Legacy synthetic modules (`covenant.py`, `drivers.py`, `calibrate.py`,
 ## Run it
 
 ```bash
-python -m pip install -r requirements.txt
+uv sync
 
-# Generate format-identical dev data for all 4 portfolio companies with
-# realistic roofing seasonality (writes to data/actual_data/<id>/, gitignored).
-# Drop a company's real exports into data/actual_data/<id>/ to use real data.
-python scripts/generate_dev_actuals.py
+# No real Exact data on hand? Generate a format-identical dev stand-in with
+# realistic roofing seasonality (writes to data/actual_data/, gitignored):
+uv run python scripts/generate_dev_actuals.py
 
-python -m streamlit run app/streamlit_app.py
+uv run streamlit run app/streamlit_app.py
 ```
 
 The app reads the Exact FinTransactions exports from `data/actual_data/`
