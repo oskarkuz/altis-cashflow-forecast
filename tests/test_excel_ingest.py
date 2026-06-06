@@ -36,3 +36,14 @@ def test_reconciliation_passes(fintransactions_factory):
     assert len(recon) == 1
     assert recon[0]["reconciles"] is True
     assert recon[0]["net_sum"] == 75.0           # 100 credit - 25 debet
+
+
+def test_unmapped_account_does_not_crash(fintransactions_factory):
+    fintransactions_factory(
+        "82604-2026-u.xlsx", "9999 - onbekend",
+        [(dt.date(2026, 2, 3), 0.0, 100.0, "U1", "VB")])
+    actuals, _ = excel_ingest.load_revenue_actuals(fintransactions_factory.glob)
+    row = actuals.iloc[0]
+    assert row["vat_category"] == "unmapped"
+    assert row["vat_rate"] == 0.0
+    assert row["cash_amount"] == 100.0

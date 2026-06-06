@@ -9,6 +9,7 @@ from __future__ import annotations
 import datetime as dt
 import glob
 import os
+import warnings
 
 import pandas as pd
 from openpyxl import load_workbook
@@ -18,10 +19,11 @@ from . import config
 
 def _rows(path):
     wb = load_workbook(path, read_only=True, data_only=True)
-    ws = wb[wb.sheetnames[0]]
-    rows = list(ws.iter_rows(values_only=True))
-    wb.close()
-    return rows
+    try:
+        ws = wb[wb.sheetnames[0]]
+        return list(ws.iter_rows(values_only=True))
+    finally:
+        wb.close()
 
 
 def _cell(row, i):
@@ -48,6 +50,8 @@ def _to_date(v):
 
 
 def _doc_no(v):
+    if v is None:
+        return ""
     if isinstance(v, float) and v.is_integer():
         return str(int(v))
     if isinstance(v, int):
@@ -69,6 +73,9 @@ def parse_fintransactions(rows, source_file):
         if str(_cell(r, 0)).strip().lower().startswith("grootboekrekening"):
             account = _to_int_account(str(_cell(r, 1)).split(" - ")[0])
             break
+    if account is None:
+        warnings.warn(f"{source_file}: no 'Grootboekrekening' account header found "
+                      "(file format mismatch?)")
     h = next((i for i, r in enumerate(rows) if str(_cell(r, 0)).strip() == "Nr."), None)
     if h is None:
         return [], None
@@ -120,6 +127,9 @@ def load_revenue_actuals(glob_pattern=None):
             "eindsaldo": eindsaldo,
             "reconciles": eindsaldo is None or abs(net_sum - eindsaldo) < 0.01,
         })
+        if not recon[-1]["reconciles"]:
+            warnings.warn(f"{fname}: net_sum {net_sum} != eindsaldo {eindsaldo} "
+                          "(does not reconcile)")
 
     df = pd.DataFrame(all_rows)
     if df.empty:
