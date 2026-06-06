@@ -1,0 +1,10 @@
+jupyterlab
+jupyterlab-lsp
+jupyterlab-git
+python-lsp-server[all]
+nbformat
+apache-beam[interactive]
+black[jupyter]
+iPython
+virtualenv
+ipykernel

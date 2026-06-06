@@ -1,0 +1,38 @@
+services:
+  jupyterlab-init:
+    build: .
+    entrypoint: "chown"
+    command:
+      - "-R"
+      - "${CONTAINER_USER}"
+      - "/.local"
+      - "/.jupyter"
+      - "/.config"
+      - "/.cache"
+    volumes:
+      - "jupyterlab-local:/.local"
+      - "jupyterlab-data:/.jupyter"
+      - "jupyterlab-config:/.config"
+      - "jupyterlab-cache:/.cache"
+
+  jupyterlab-server:
+    build: .
+    ports:
+      - "127.0.0.1:8888:8888"
+    user: "${CONTAINER_USER}"
+    working_dir: "/project"
+    volumes:
+      - "${PROJECT_DIR}:/project"
+      - "jupyterlab-local:/.local"
+      - "jupyterlab-data:/.jupyter"
+      - "jupyterlab-config:/.config"
+      - "jupyterlab-cache:/.cache"
+    depends_on:
+      jupyterlab-init:
+        condition: service_completed_successfully
+
+volumes:
+  jupyterlab-local: {}
+  jupyterlab-data: {}
+  jupyterlab-config: {}
+  jupyterlab-cache: {}
