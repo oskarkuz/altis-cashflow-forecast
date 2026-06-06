@@ -50,7 +50,7 @@ def build_forecast(actuals, start_date=None, n_weeks=None, payment_terms_days=No
     n_weeks = n_weeks or config.N_WEEKS
     payment_terms_days = config.PAYMENT_TERMS_DAYS if payment_terms_days is None \
         else payment_terms_days
-    seasonal_years = seasonal_years or config.SEASONAL_YEARS
+    seasonal_years = config.SEASONAL_YEARS if seasonal_years is None else seasonal_years
     yoy_clamp = yoy_clamp or config.YOY_CLAMP
 
     wk = weekly_actuals(actuals)
