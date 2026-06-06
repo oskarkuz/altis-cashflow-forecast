@@ -1,0 +1,77 @@
+version: "3"
+
+output: prefixed
+
+vars:
+  CONTAINER_USER:
+    sh: echo "$(id -u):$(id -g)"
+  PROJECT_DIR:
+    sh: pwd
+
+env:
+  CONTAINER_USER: "{{.CONTAINER_USER}}"
+  PROJECT_DIR: "{{.PROJECT_DIR}}"
+
+tasks:
+  start:
+    desc: Start Jupiter Notebook/Lab server.
+    cmds:
+      - docker compose -f docker-compose.yml up --build -d
+      - sleep 5s
+      - task show:host
+    interactive: true
+
+  stop:
+    desc: Halt the server container (without removing it).
+    cmds:
+      - docker compose -f docker-compose.yml stop
+    interactive: true
+
+  down:
+    desc: Halts the server container and removes them.
+    cmds:
+      - docker compose -f docker-compose.yml down --remove-orphans
+    interactive: true
+
+  clean:
+    desc: Remove the container and their data volumes.
+    cmds:
+      - task down
+      - docker volume rm $(docker volume ls -q | grep notebooks_jupyterlab | awk -v RS=  '{$1=$1}1')
+    interactive: true
+
+  new:kernel:
+    desc: Create a new Python Kernel.
+    cmds:
+      - docker exec -it $(docker ps -aqf "name=notebooks-jupyterlab-server") python -m ipykernel install --user --name={{.CLI_ARGS}}
+    interactive: true
+
+  list:kernel:
+    desc: List a Python Kernels.
+    cmds:
+      - docker exec -it $(docker ps -aqf "name=notebooks-jupyterlab-server") python -m jupyter kernelspec list
+    interactive: true
+
+  rm:kernel:
+    desc: Remove a Python Kernel.
+    cmds:
+      - docker exec -it $(docker ps -aqf "name=notebooks-jupyterlab-server") python -m jupyter kernelspec remove -y {{.CLI_ARGS}}
+    interactive: true
+
+  format:
+    desc: Formats a notebook file.
+    cmds:
+      - docker exec -it $(docker ps -aqf "name=notebooks-jupyterlab-server") black --python-cell-magics writefile -t py310 --ipynb --include .*\.ipynb$ -v .
+    interactive: true
+
+  logs:
+    desc: Show the logs of the server container.
+    cmds:
+      - docker logs $(docker ps -aqf "name=notebooks-jupyterlab-server")
+    interactive: true
+
+  show:host:
+    desc: Show the host address of the server container.
+    cmds:
+      - task logs | grep -a "http://127.0.0.1:" | head -1 | sed -ne 's/.*\(http[^"]*\).*/\1/p'
+    interactive: true
