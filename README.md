@@ -18,7 +18,10 @@ unified `transactions` table that keeps `source_system` + `source_row_id` on eve
 row (unmapped accounts fall into an *“unmapped — review”* bucket instead of
 crashing); **(3) Driver modelling** turns the forward milestone plan + opening
 balances + weather into `cash_events` across five independently-tunable drivers
-(materials, subcontractor, milestone_billing, payment_lag, weather); **(4) the
+(materials, subcontractor, milestone_billing, payment_lag, weather) — and the
+payment assumptions are **calibrated from the actuals** (empirical per-opco DSO/DPO,
+clamped for noise, with the forward plan sanity-checked against the trailing
+run-rate), so the past informs the forecast rather than the lags being hand-set; **(4) the
 Scenario engine** transforms the *input* weather (wet ×1.6 / dry ×0.4) into
 lost crew-days → a per-project schedule delay that **shifts** each weather-sensitive
 project's billing and materials events to later weeks (tagged with the assumption
@@ -88,6 +91,7 @@ src/
   config.py               all tunable parameters
   ingest.py               Layer 1 — per-system loaders (+ extensible registry)
   reconcile.py            Layer 2 — GL mapping -> unified transactions
+  calibrate.py            derive DSO/DPO + run-rates from actuals (past -> forecast)
   weather.py              weather -> lost days -> per-week schedule delay
   drivers.py              Layer 3/4 — build cash_events (the single source of truth)
   covenant.py             liquidity path + headroom bands + leverage

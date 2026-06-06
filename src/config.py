@@ -49,6 +49,17 @@ DRIVER_PARAMS = {
 }
 
 # --------------------------------------------------------------------------- #
+# CALIBRATION — derive forecast assumptions from the reconciled ACTUALS
+# (the past informs the future). Empirical DSO/DPO feed the payment_lag driver;
+# the DRIVER_PARAMS values above are the fallback when calibration is off.
+# --------------------------------------------------------------------------- #
+CALIBRATE_FROM_ACTUALS = True
+CALIBRATION = {
+    "dso_min": 14, "dso_max": 49, "dso_default": 35,   # clamp band for noise
+    "dpo_min": 20, "dpo_max": 49, "dpo_default": 25,
+}
+
+# --------------------------------------------------------------------------- #
 # WEATHER -> SCHEDULE rule (confirm threshold with a mentor; it is a parameter)
 # --------------------------------------------------------------------------- #
 WEATHER = {

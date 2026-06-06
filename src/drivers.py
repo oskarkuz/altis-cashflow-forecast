@@ -122,20 +122,29 @@ def _events_from_milestones(scenario: str, projects: dict, milestones: pd.DataFr
     return events
 
 
-def _events_from_opening_balances(scenario: str, balances: pd.DataFrame) -> list[dict]:
-    """payment_lag driver: run-off the OPENING AR / AP over the first weeks."""
+def _events_from_opening_balances(scenario: str, balances: pd.DataFrame,
+                                  calibration: dict | None = None) -> list[dict]:
+    """payment_lag driver: run-off the OPENING AR / AP over the first weeks.
+    DSO/DPO are calibrated per-opco from the actuals when available, else config."""
     events = []
-    dso = config.DRIVER_PARAMS["payment_lag"]["dso_days"]
-    dpo = config.DRIVER_PARAMS["payment_lag"]["dpo_days"]
+    cfg_dso = config.DRIVER_PARAMS["payment_lag"]["dso_days"]
+    cfg_dpo = config.DRIVER_PARAMS["payment_lag"]["dpo_days"]
     for _, b in balances.iterrows():
         atype = b["account_type"]
         if atype == "cash":
             continue  # opening cash is the starting position, not a cash_event
+        opco = b["opco"]
+        if calibration and opco in calibration.get("per_opco", {}):
+            dso = calibration["per_opco"][opco]["dso_days"]
+            dpo = calibration["per_opco"][opco]["dpo_days"]
+            src = "calibrated from actuals"
+        else:
+            dso, dpo, src = cfg_dso, cfg_dpo, "config default"
         amount = float(b["amount"])
         days = dso if atype == "AR" else dpo
         n_weeks = max(1, math.ceil(days / 7))
         slice_amt = amount / n_weeks
-        tag = f"{days}-day {'DSO' if atype=='AR' else 'DPO'} run-off"
+        tag = f"{days}-day {'DSO' if atype=='AR' else 'DPO'} run-off ({src})"
         for wk in range(1, n_weeks + 1):
             events.append({
                 "scenario": scenario, "week": wk, "opco": b["opco"],
@@ -181,7 +190,8 @@ def _events_from_weather(scenario: str, projects: dict, wx: dict,
 # --------------------------------------------------------------------------- #
 # top-level
 # --------------------------------------------------------------------------- #
-def build_cash_events(scenario: str = "base", raw_dir: str | None = None) -> pd.DataFrame:
+def build_cash_events(scenario: str = "base", raw_dir: str | None = None,
+                      calibration: dict | None = None) -> pd.DataFrame:
     raw_dir = raw_dir or config.RAW
     projects = load_projects(raw_dir)
     milestones = load_milestones(raw_dir)
@@ -192,7 +202,7 @@ def build_cash_events(scenario: str = "base", raw_dir: str | None = None) -> pd.
 
     events = []
     events += _events_from_milestones(scenario, projects, milestones, wx)
-    events += _events_from_opening_balances(scenario, balances)
+    events += _events_from_opening_balances(scenario, balances, calibration)
     events += _events_from_weather(scenario, projects, wx, wx_base)
 
     df = pd.DataFrame(events)

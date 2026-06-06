@@ -8,7 +8,7 @@ import os
 
 import pandas as pd
 
-from . import config, covenant, drivers, ingest, reconcile, weather
+from . import calibrate, config, covenant, drivers, ingest, reconcile, weather
 
 SCENARIOS = list(config.SCENARIOS.keys())   # base, wet, dry
 
@@ -39,6 +39,10 @@ def run(raw_dir: str | None = None) -> dict:
 
     cash0 = opening_cash(raw_dir)
 
+    # Calibration: derive forecast assumptions from the ACTUALS (past -> future)
+    calib = calibrate.calibrate(txns, raw_dir=raw_dir) \
+        if config.CALIBRATE_FROM_ACTUALS else None
+
     # Layers 3-5 per scenario
     cash_events = {}
     weekly = {}
@@ -46,7 +50,7 @@ def run(raw_dir: str | None = None) -> dict:
     cov = {}
     wx = {}
     for sc in SCENARIOS:
-        ev = drivers.build_cash_events(sc, raw_dir)
+        ev = drivers.build_cash_events(sc, raw_dir, calibration=calib)
         cash_events[sc] = ev
         weekly[sc] = weekly_by_driver(ev)
         path = covenant.liquidity_path(ev, cash0)
@@ -60,6 +64,7 @@ def run(raw_dir: str | None = None) -> dict:
     return {
         "transactions": txns,
         "recon_report": recon_report,
+        "calibration": calib,
         "opening_cash": cash0,
         "cash_events": cash_events,    # {scenario -> df}
         "all_events": all_events,

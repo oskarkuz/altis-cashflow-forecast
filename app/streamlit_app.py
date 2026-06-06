@@ -15,7 +15,7 @@ import pandas as pd
 import streamlit as st
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from src import audit, config, pipeline  # noqa: E402
+from src import audit, calibrate, config, pipeline  # noqa: E402
 
 st.set_page_config(page_title="Altis Groep — Cash-Flow Forecast",
                    page_icon="💶", layout="wide")
@@ -66,6 +66,9 @@ st.sidebar.write(
     f"({', '.join(rep['unmapped_accounts']) or '—'})")
 wx = bundle["weather"][scenario]
 st.sidebar.write(f"- Weather lost days ({scenario}): **{wx['total_lost']}**")
+if bundle.get("calibration"):
+    st.sidebar.write(f"- Assumptions calibrated from **{bundle['calibration']['span_weeks']} wk** "
+                     f"of actuals ✓")
 st.sidebar.caption("Every figure below is a live aggregation of one `cash_events` "
                    "table. Synthetic data, deterministic (seed 42).")
 
@@ -126,6 +129,49 @@ def audit_panel(events: pd.DataFrame, default_week: int, key: str,
 
 
 # --------------------------------------------------------------------------- #
+# Shared: calibration panel (the past informs the forecast)
+# --------------------------------------------------------------------------- #
+def calibration_panel():
+    c = bundle.get("calibration")
+    if not c:
+        return
+    with st.expander(f"🔌 Calibration — the past informs the forecast "
+                     f"(measured from {c['span_weeks']} weeks of reconciled actuals)",
+                     expanded=False):
+        st.caption("This forecast is not hand-set: the **payment_lag** driver's DSO/DPO "
+                   "are *measured per opco from the actuals* (clamped for small-sample "
+                   "noise), and the forward plan's spend is sanity-checked against the "
+                   "trailing run-rate. Every payment_lag cash_event is tagged "
+                   "`(calibrated from actuals)` in the audit drill-down.")
+        tbl = calibrate.summary_table(c)
+        st.markdown("**Payment behaviour calibrated per opco**  (raw → used):")
+        st.dataframe(
+            tbl[["opco", "open_AR", "DSO_raw", "DSO_used",
+                 "open_AP", "DPO_raw", "DPO_used"]].style.format(
+                {"open_AR": "{:,.0f}", "open_AP": "{:,.0f}",
+                 "DSO_raw": "{:.0f}", "DSO_used": "{:.0f}",
+                 "DPO_raw": "{:.0f}", "DPO_used": "{:.0f}"}),
+            use_container_width=True, hide_index=True)
+
+        weekly = bundle["weekly"]["base"]
+        fwd_mat = -weekly.get("materials", pd.Series(0)).sum() / config.N_WEEKS
+        fwd_sub = -weekly.get("subcontractor", pd.Series(0)).sum() / config.N_WEEKS
+        rr = pd.DataFrame({
+            "driver": ["materials", "subcontractor"],
+            "trailing_wk_actual": [c["hist_wk_materials"], c["hist_wk_subcontractor"]],
+            "forward_wk_planned": [fwd_mat, fwd_sub]})
+        rr["ramp"] = (rr["forward_wk_planned"] / rr["trailing_wk_actual"]).map(
+            lambda x: f"{x:.1f}×")
+        st.markdown("**Forward plan vs trailing run-rate**  (spend per week):")
+        st.dataframe(rr.style.format({"trailing_wk_actual": "{:,.0f}",
+                                      "forward_wk_planned": "{:,.0f}"}),
+                     use_container_width=True, hide_index=True)
+        st.caption("Forward committed spend runs ~2.5–3× the spring run-rate — the "
+                   "summer build-season ramp. Surfacing it lets a controller challenge "
+                   "the plan against what the business has actually been spending.")
+
+
+# --------------------------------------------------------------------------- #
 # CFO VIEW
 # --------------------------------------------------------------------------- #
 def cfo_view():
@@ -164,6 +210,8 @@ def cfo_view():
     else:
         st.success(f"🟢 Liquidity stays clear of the floor all 13 weeks "
                    f"(min headroom {euro(cov['min_headroom'])}).")
+
+    calibration_panel()
 
     # --- Covenant headroom indicator -------------------------------------- #
     st.subheader("Covenant headroom — available liquidity vs floor")
@@ -246,6 +294,12 @@ def opco_view():
     st.title("Opco MD — WIP Exposure & Project Risk")
     opco = st.selectbox("Operating company", opcos, index=0)
     wx = bundle["weather"][scenario]
+    cal = bundle.get("calibration")
+    if cal and opco in cal["per_opco"]:
+        p = cal["per_opco"][opco]
+        st.caption(f"📈 Calibrated from actuals — **DSO {p['dso_days']}d · DPO {p['dpo_days']}d** · "
+                   f"trailing run-rate: materials €{p['wk_materials']:,.0f}/wk, "
+                   f"subcontractor €{p['wk_subcontractor']:,.0f}/wk")
 
     pj = wip[wip["opco"] == opco].copy()
     t = txns[txns["opco"] == opco]
