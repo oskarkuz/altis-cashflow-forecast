@@ -8,7 +8,8 @@ import os
 
 import pandas as pd
 
-from . import calibrate, config, covenant, drivers, ingest, reconcile, weather
+from . import (calibrate, config, covenant, drivers, gl_ai, ingest, reconcile,
+               weather)
 
 SCENARIOS = list(config.SCENARIOS.keys())   # base, wet, dry
 
@@ -36,6 +37,7 @@ def run(raw_dir: str | None = None) -> dict:
     raw = ingest.load_all(raw_dir)
     txns = reconcile.reconcile(raw, raw_dir)
     recon_report = reconcile.reconciliation_report(txns)
+    review_queue = gl_ai.review_queue(txns, raw_dir)   # AI suggestions for unmapped
 
     cash0 = opening_cash(raw_dir)
 
@@ -64,6 +66,7 @@ def run(raw_dir: str | None = None) -> dict:
     return {
         "transactions": txns,
         "recon_report": recon_report,
+        "review_queue": review_queue,
         "calibration": calib,
         "opening_cash": cash0,
         "cash_events": cash_events,    # {scenario -> df}

@@ -15,7 +15,7 @@ import pandas as pd
 import streamlit as st
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from src import audit, calibrate, config, pipeline  # noqa: E402
+from src import audit, calibrate, config, gl_ai, pipeline  # noqa: E402
 
 st.set_page_config(page_title="Altis Groep — Cash-Flow Forecast",
                    page_icon="💶", layout="wide")
@@ -126,6 +126,36 @@ def audit_panel(events: pd.DataFrame, default_week: int, key: str,
         with tcol2:
             st.markdown(f"raw source → `data/raw/{raw['raw_file']}`  (key `{raw['key']}`)")
             st.json(raw["row"])
+
+
+# --------------------------------------------------------------------------- #
+# Shared: AI GL-mapping review workflow
+# --------------------------------------------------------------------------- #
+def render_mapping_review():
+    rq = bundle.get("review_queue")
+    if rq is None or len(rq) == 0:
+        return
+    engine = rq["engine"].iloc[0]
+    with st.container(border=True):
+        st.markdown(f"### 🧠 AI GL-mapping review — {len(rq)} account(s) need a decision")
+        st.caption(
+            f"Engine: **{engine}** · An account not in `gl_mapping.csv` doesn't crash the "
+            "pipeline — it lands here with an **AI-suggested** unified account + driver + "
+            "rationale. Approve to map it (writes `gl_mapping_overrides.csv`; the whole "
+            "forecast re-runs). Set `GL_AI.use_llm` + `ANTHROPIC_API_KEY` for live Claude.")
+        for _, r in rq.iterrows():
+            c1, c2, c3, c4 = st.columns([3, 3, 1.2, 1])
+            c1.markdown(f"**{r.source_system} · {r.source_account}**  \n{r.source_account_name}  \n"
+                        f"_{int(r.n_postings)} postings · {euro(r.amount)}_")
+            c2.markdown(f"➡️ **{r.suggested_account} {r.suggested_name}**  \n"
+                        f"driver: `{r.suggested_driver}`  \n_{r.rationale}_")
+            c3.metric("confidence", f"{r.confidence:.0%}")
+            if c4.button("✓ Approve", key=f"appr_{r.source_system}_{r.source_account}",
+                         type="primary"):
+                gl_ai.approve(r.source_system, r.source_account, r.source_account_name,
+                              r.suggested_account, r.suggested_name, r.suggested_driver)
+                load_bundle.clear()
+                st.rerun()
 
 
 # --------------------------------------------------------------------------- #
@@ -377,6 +407,8 @@ def opco_view():
 
 
 # --------------------------------------------------------------------------- #
+render_mapping_review()
+
 if role == "CFO":
     cfo_view()
 else:

@@ -17,20 +17,29 @@ import pandas as pd
 from . import config, ingest
 
 UNIFIED_COLS = ["txn_id", "source_system", "source_row_id", "opco",
-                "posting_date", "source_account", "unified_account",
-                "unified_name", "driver", "project_id", "counterparty", "amount"]
+                "posting_date", "source_account", "source_account_name",
+                "unified_account", "unified_name", "driver", "project_id",
+                "counterparty", "amount"]
+
+OVERRIDES_FILE = "gl_mapping_overrides.csv"   # controller-approved AI suggestions
 
 
 def load_mapping(raw_dir: str | None = None) -> dict[tuple[str, str], tuple[str, str, str]]:
-    """(source_system, source_account) -> (unified_account, unified_name, driver)."""
+    """(source_system, source_account) -> (unified_account, unified_name, driver).
+    The base gl_mapping.csv plus any controller-approved overrides (overrides win),
+    so accounts mapped via the AI review workflow take effect on the next re-run."""
     raw_dir = raw_dir or config.RAW
-    gm = pd.read_csv(os.path.join(raw_dir, "gl_mapping.csv"), dtype=str).fillna("")
     mapping = {}
-    for _, r in gm.iterrows():
-        key = (r["source_system"].strip(), r["source_account"].strip())
-        mapping[key] = (r["unified_account"].strip(),
-                        r["unified_name"].strip(),
-                        r["driver"].strip())
+    for fname in ("gl_mapping.csv", OVERRIDES_FILE):
+        path = os.path.join(raw_dir, fname)
+        if not os.path.exists(path):
+            continue
+        gm = pd.read_csv(path, dtype=str).fillna("")
+        for _, r in gm.iterrows():
+            key = (r["source_system"].strip(), r["source_account"].strip())
+            mapping[key] = (r["unified_account"].strip(),
+                            r["unified_name"].strip(),
+                            r["driver"].strip())
     return mapping
 
 
@@ -54,6 +63,7 @@ def reconcile(raw_df: pd.DataFrame | None = None,
             "opco": config.SYSTEM_TO_OPCO.get(r["source_system"], "UNKNOWN"),
             "posting_date": r["posting_date"],
             "source_account": r["source_account"],
+            "source_account_name": r.get("source_account_name", ""),
             "unified_account": ua,
             "unified_name": un,
             "driver": drv,

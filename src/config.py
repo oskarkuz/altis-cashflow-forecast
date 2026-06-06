@@ -60,6 +60,17 @@ CALIBRATION = {
 }
 
 # --------------------------------------------------------------------------- #
+# AI-ASSISTED GL MAPPING
+# Unmapped accounts get an AI-suggested unified account + driver for a
+# controller to approve. Default engine is an offline semantic matcher (no key,
+# no cost). Set use_llm=True AND export ANTHROPIC_API_KEY to use real Claude.
+# --------------------------------------------------------------------------- #
+GL_AI = {
+    "use_llm": False,
+    "model": "claude-haiku-4-5-20251001",
+}
+
+# --------------------------------------------------------------------------- #
 # WEATHER -> SCHEDULE rule (confirm threshold with a mentor; it is a parameter)
 # --------------------------------------------------------------------------- #
 WEATHER = {
