@@ -28,8 +28,10 @@ def _kpis(actuals, forecast_events):
     factor = forecast.yoy_factor(actuals)
     trailing = 0.0
     if not actuals.empty:
-        wk = forecast.weekly_actuals(actuals).sort_values(["iso_year", "iso_week"])
-        trailing = float(wk.tail(13 * max(1, actuals["vat_category"].nunique()))["cash"].sum())
+        wk = forecast.weekly_actuals(actuals)
+        last_13 = (wk[["iso_year", "iso_week"]].drop_duplicates()
+                   .sort_values(["iso_year", "iso_week"]).tail(13))
+        trailing = float(wk.merge(last_13, on=["iso_year", "iso_week"])["cash"].sum())
     return {
         "forecast_total": round(forecast_total, 2),
         "avg_weekly": round(forecast_total / config.N_WEEKS, 2),
